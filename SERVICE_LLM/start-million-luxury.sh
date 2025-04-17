@@ -39,6 +39,20 @@ progress_bar() {
 
 cleanup() {
     print_message "Received termination signal. Shutting down services..." "${YELLOW}"
+    
+    print_message "Cleaning up temporary documents..." "${YELLOW}"
+    docker-compose exec -T api python -c "
+import asyncio
+from app.main import cleanup_temp_documents
+
+async def run_cleanup():
+    print('Starting cleanup of all temporary documents...')
+    await cleanup_temp_documents()
+    print('Temporary documents cleanup completed')
+
+asyncio.run(run_cleanup())
+" || print_message "Warning: Could not clean temporary documents" "${RED}"
+    
     print_message "Stopping and removing containers, volumes and orphans..." "${YELLOW}"
     docker-compose down --volumes --remove-orphans
     print_message "Cleanup complete. System has been shut down." "${GREEN}"
@@ -110,6 +124,32 @@ for ((i=1; i<=MAX_ATTEMPTS; i++)); do
         sleep 2
     fi
 done
+
+print_message "Registering cleanup handler for unexpected termination..." "${BLUE}"
+nohup bash -c '
+    MAIN_PID=$$
+    while true; do
+        if ! ps -p $PPID > /dev/null; then
+            # El proceso padre ha terminado inesperadamente
+            echo "$(date "+%Y-%m-%d %H:%M:%S") - Main process terminated unexpectedly, cleaning up..."
+            docker-compose exec -T api python -c "
+import asyncio
+from app.main import cleanup_temp_documents
+
+async def run_cleanup():
+    print(\"Starting emergency cleanup of temporary documents...\")
+    await cleanup_temp_documents()
+    print(\"Emergency cleanup completed\")
+
+asyncio.run(run_cleanup())
+" || echo "$(date "+%Y-%m-%d %H:%M:%S") - Warning: Could not clean temporary documents during emergency cleanup"
+            docker-compose down --volumes --remove-orphans
+            echo "$(date "+%Y-%m-%d %H:%M:%S") - Emergency cleanup complete"
+            exit 0
+        fi
+        sleep 5
+    done
+' > /tmp/cleanup_monitor.log 2>&1 &
 
 echo ""
 print_message "Model Management Instructions:" "${BLUE}"

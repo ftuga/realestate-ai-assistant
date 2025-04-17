@@ -1,0 +1,134 @@
+[2025-04-17T21:10:14.321+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pdf_processing_embedding_dag.get_documents_task manual__2025-04-17T21:10:10.525233+00:00 [queued]>
+[2025-04-17T21:10:14.326+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pdf_processing_embedding_dag.get_documents_task manual__2025-04-17T21:10:10.525233+00:00 [queued]>
+[2025-04-17T21:10:14.326+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2025-04-17T21:10:14.332+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): get_documents_task> on 2025-04-17 21:10:10.525233+00:00
+[2025-04-17T21:10:14.335+0000] {standard_task_runner.py:57} INFO - Started process 94 to run task
+[2025-04-17T21:10:14.338+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'pdf_processing_embedding_dag', 'get_documents_task', 'manual__2025-04-17T21:10:10.525233+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/Text_processor.py', '--cfg-path', '/tmp/tmp6w46k03e']
+[2025-04-17T21:10:14.342+0000] {standard_task_runner.py:85} INFO - Job 4: Subtask get_documents_task
+[2025-04-17T21:10:14.381+0000] {task_command.py:410} INFO - Running <TaskInstance: pdf_processing_embedding_dag.get_documents_task manual__2025-04-17T21:10:10.525233+00:00 [running]> on host 015398762be1
+[2025-04-17T21:10:14.422+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='pdf_processing_embedding_dag' AIRFLOW_CTX_TASK_ID='get_documents_task' AIRFLOW_CTX_EXECUTION_DATE='2025-04-17T21:10:10.525233+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-04-17T21:10:10.525233+00:00'
+[2025-04-17T21:10:14.423+0000] {logging_mixin.py:149} INFO - Escaneando directorio: /opt/***/data
+[2025-04-17T21:10:14.423+0000] {crypto.py:83} WARNING - empty cryptography key - values will not be stored encrypted.
+[2025-04-17T21:10:14.424+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T21:10:14.431+0000] {sql.py:375} INFO - Running statement: 
+        SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '***_db'
+        , parameters: None
+[2025-04-17T21:10:14.432+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T21:10:14.432+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T21:10:14.435+0000] {sql.py:375} INFO - Running statement: USE ***_db;, parameters: None
+[2025-04-17T21:10:14.435+0000] {sql.py:384} INFO - Rows affected: 0
+[2025-04-17T21:10:14.435+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T21:10:14.438+0000] {sql.py:375} INFO - Running statement: 
+        SELECT COUNT(*)
+        FROM information_schema.tables
+        WHERE table_schema = '***_db'
+        AND table_name = 'documents';
+        , parameters: None
+[2025-04-17T21:10:14.439+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T21:10:14.439+0000] {logging_mixin.py:149} INFO - La tabla 'documents' ya existe.
+[2025-04-17T21:10:14.439+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T21:10:14.441+0000] {sql.py:375} INFO - Running statement: 
+                SELECT COUNT(*)
+                FROM information_schema.columns
+                WHERE table_schema = '***_db'
+                AND table_name = 'documents'
+                AND column_name = 'file_path';
+                , parameters: None
+[2025-04-17T21:10:14.443+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T21:10:14.443+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T21:10:14.445+0000] {sql.py:375} INFO - Running statement: 
+                SELECT COUNT(*)
+                FROM information_schema.columns
+                WHERE table_schema = '***_db'
+                AND table_name = 'documents'
+                AND column_name = 'page_count';
+                , parameters: None
+[2025-04-17T21:10:14.446+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T21:10:14.447+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T21:10:14.449+0000] {sql.py:375} INFO - Running statement: 
+                SELECT COUNT(*)
+                FROM information_schema.columns
+                WHERE table_schema = '***_db'
+                AND table_name = 'documents'
+                AND column_name = 'file_hash';
+                , parameters: None
+[2025-04-17T21:10:14.450+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T21:10:14.450+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T21:10:14.452+0000] {sql.py:375} INFO - Running statement: 
+                SELECT COUNT(*)
+                FROM information_schema.columns
+                WHERE table_schema = '***_db'
+                AND table_name = 'documents'
+                AND column_name = 'last_updated';
+                , parameters: None
+[2025-04-17T21:10:14.453+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T21:10:14.454+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T21:10:14.456+0000] {sql.py:375} INFO - Running statement: 
+            SELECT COUNT(*)
+            FROM information_schema.statistics
+            WHERE table_schema = '***_db'
+            AND table_name = 'documents'
+            AND index_name = 'idx_title';
+            , parameters: None
+[2025-04-17T21:10:14.457+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T21:10:14.458+0000] {logging_mixin.py:149} INFO - Encontrados 3 archivos PDF
+[2025-04-17T21:10:14.459+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T21:10:14.461+0000] {sql.py:375} INFO - Running statement: 
+        SELECT id, file_hash FROM documents 
+        WHERE title = %s
+        , parameters: ['BAYFRONT RESIDENCES.pdf']
+[2025-04-17T21:10:14.462+0000] {sql.py:384} INFO - Rows affected: 0
+[2025-04-17T21:10:14.479+0000] {logging_mixin.py:149} INFO - Extracción exitosa del PDF /opt/***/data/BAYFRONT RESIDENCES.pdf usando PyPDF2
+[2025-04-17T21:10:14.480+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T21:10:14.483+0000] {sql.py:375} INFO - Running statement: 
+                    INSERT INTO documents (title, content, processed, file_path, page_count, file_hash) 
+                    VALUES (%s, %s, 0, %s, %s, %s)
+                    , parameters: ['BAYFRONT RESIDENCES.pdf', ' \nBAYFRONT\n \nRESIDENCES\n \n \nPRICE\n \nRANGE\n \nStarting\n \nat\n \n$9,000,000\n \nAMENITIES\n \nDirect\n \nBeach\n \nAccess\n \nTHE\n \nBUILDING\n \nShore\n \nClub\n \nfeatures\n \n18\n \nlevels\n \nand\n \n49\n \nelegant\n \nresidences\n \nwith\n \nfloor\n \nplans\n \nstarting\n \nat\n \n2,400\n \nup\n \nto\n \n7,000\n \nSq.\n \nFt.\n \nBeach\n \nService\n \nExpansive\n \nPool\n \nDecks\n \nExterior\n \nCafé\n \nDEVELOPER\n \nDeveloped\n \nby\n \nWitkof f.\n \nDining\n \nAreas\n \nARCHITECTURE\n \nAn\n \nexceptional\n \nredesign\n \nthanks\n \nto\n \nRobert\n \nA.M.\n \nStern\n \nArchitects.\n \nINTERIOR\n \nDESIGN\n \nFinishes\n \nand\n \ninterior\n \nareas\n \nby\n \nKobi\n \nKarp\n \nArchitecture\n \n&\n \nInterior\n \nDesign.\n \nCOMPLETION\n \nDATE\n \nExpected\n \nto\n \nbe\n \ndelivered\n \nby\n \n2026.\n \nLOCA TION\n \nCharacterized\n \nby\n \nits\n \nsignature\n \nArt\n \nDeco\n \nstyle\n \nin\n \nplenty\n \nof\n \nlocations,\n \nMiami\n \nBeach\n \ncontains\n \nmore\n \nthan\n \n800\n \narchitecturally\n \nprotected\n \nbuildings\n \nand\n \nhotels\n \nfrom\n \nthe\n \n1930s\n \nand\n \n1940s.\n \nA\n \ncity\n \nto\n \nenjoy\n \nthe\n \nfinest\n \nof\n \ndining,\n \nnightlife,\n \nspas,\n \nand\n \nbeaches,\n \nor\n \nto\n \nvi\n \n \n   \n', '/opt/***/data/BAYFRONT RESIDENCES.pdf', 1, '3eb5997b9b454328d216e965738a61af']
+[2025-04-17T21:10:14.483+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T21:10:14.487+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T21:10:14.489+0000] {sql.py:375} INFO - Running statement: SELECT LAST_INSERT_ID(), parameters: None
+[2025-04-17T21:10:14.489+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T21:10:14.490+0000] {logging_mixin.py:149} INFO - Añadido nuevo documento BAYFRONT RESIDENCES.pdf (ID: 0) a la base de datos
+[2025-04-17T21:10:14.491+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T21:10:14.493+0000] {sql.py:375} INFO - Running statement: 
+        SELECT id, file_hash FROM documents 
+        WHERE title = %s
+        , parameters: ['UNA CLUB.pdf']
+[2025-04-17T21:10:14.493+0000] {sql.py:384} INFO - Rows affected: 0
+[2025-04-17T21:10:14.512+0000] {logging_mixin.py:149} INFO - Extracción exitosa del PDF /opt/***/data/UNA CLUB.pdf usando PyPDF2
+[2025-04-17T21:10:14.512+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T21:10:14.515+0000] {sql.py:375} INFO - Running statement: 
+                    INSERT INTO documents (title, content, processed, file_path, page_count, file_hash) 
+                    VALUES (%s, %s, 0, %s, %s, %s)
+                    , parameters: ['UNA CLUB.pdf', "Document:\n \n \n \nUNA\n \nCLUB\n \nPRICE\n \nRANGE\n \nStarting\n \nat\n \n$4,500,000\n \nAMENITIES\n \nTHE\n \nBUILDING\n \nFeaturing\n \ntwo\n \ntowers\n \nand\n \n62\n \nfloors\n \nwith\n \n352\n \nlavish\n \nresidences,\n \nfrom\n \n2\n \nto\n \n5\n \nbedrooms\n \nspanning\n \nbetween\n \n1,785\n \nand\n \n10,000\n \nSq.\n \nFt.\n \nPrivate\n \nbeach\n \namenities\n \ninclude\n \ncabanas,\n \nchaise\n \nlounges,\n \nand\n \numbrellas.\n \nChildren\n \n/\n \nteen’ s\n \nclub.\n \nDEVELOPER\n \nDeveloped\n \nby\n \nFortune\n \nInternational\n \nand\n \nChâteau\n \nGroup.\n \nARCHITECTURE\n \nA\n \nunique\n \nand\n \nluxurious\n \ndesign\n \nby\n \nArquitectonica.\n \nDog\n \npark\n \nand\n \npet\n \nspa\n \non-site.\n \nPools\n \n-\n \nclub\n \nmembers\n \npool,\n \ntower\n \npool,\n \nlap\n \npool.\n \nSpa\n \nconcierge.\n \nPrivate\n \nsecluded\n \nareas.\n \nINTERIOR\n \nDESIGN\n \nSplendid\n \ninteriors\n \nby\n \nPatricia\n \nAnastassiadis.\n \nCOMPLETION\n \nDATE\n \nThe\n \nSouth\n \nTower\n \nwill\n \nbe\n \ndelivered\n \nin\n \n2027\n \nand\n \nthe\n \nNorth\n \nTower\n \nwill\n \nbe\n \ndelivered\n \nin\n \n2029.\n \nLOCA TION\n \nThe\n \nproject\n \nwill\n \nbe\n \nin\n \nSunny\n \nIsles\n \nBeach,\n \nright\n \non\n \nMiami’ s\n \ncelebrated\n \nCollins\n \nAvenue.\n \nThis\n \nprime\n \naddress\n \nwill\n \nposition\n \nresidents\n \namong\n \nnumerous\n \npopular\n \nentertainment\n \nvenues,\n \nplus\n \nit's\n \njust\n \nminutes\n \naway\n \nfrom\n \nAventura,\n \nBal\n \nHarbour ,\n \nand\n \nthe\n \nFort\n \nLauderdale\n \nAirport.\n \nOutdoor\n \nwellness\n \n&\n \nrelaxation\n \nterrace\n \nwith\n \nplunge\n \npools.\n \nSignature\n \nrestaurant\n \nopen\n \nto\n \nthe\n \npublic\n \nwith\n \nbar\n \nlounge\n \n&\n \nprivate\n \ndining\n \nroom.\n \nOceanfront\n \nterrace\n \ndining\n \n&\n \nlounge.\n \nMulti-purpose\n \nevents\n \nlawn\n \n&\n \npavilion.\n \nThe\n \nbusiness\n \nclub\n \nfeatures\n \na\n \nJohn\n \nJacob\n \nAstor\n \nboardroom,\n \nprivate\n \noffices,\n \na\n \nconference\n \nroom,\n \nco-working\n \nspaces,\n \nand\n \na\n \ntrading\n \nroom.\n \nMezzanine\n \nwith\n \nprivate\n \ndining\n \nareas\n \nwith\n \nchef’s\n \nkitchen\n \nand\n \nprep\n \narea.\n \n", '/opt/***/data/UNA CLUB.pdf', 1, 'd1236224608c576bb014d246111c1b97']
+[2025-04-17T21:10:14.516+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T21:10:14.520+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T21:10:14.522+0000] {sql.py:375} INFO - Running statement: SELECT LAST_INSERT_ID(), parameters: None
+[2025-04-17T21:10:14.522+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T21:10:14.523+0000] {logging_mixin.py:149} INFO - Añadido nuevo documento UNA CLUB.pdf (ID: 0) a la base de datos
+[2025-04-17T21:10:14.524+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T21:10:14.526+0000] {sql.py:375} INFO - Running statement: 
+        SELECT id, file_hash FROM documents 
+        WHERE title = %s
+        , parameters: ['BRICKELL HOME LUXURY.pdf']
+[2025-04-17T21:10:14.526+0000] {sql.py:384} INFO - Rows affected: 0
+[2025-04-17T21:10:14.559+0000] {logging_mixin.py:149} INFO - Extracción exitosa del PDF /opt/***/data/BRICKELL HOME LUXURY.pdf usando PyPDF2
+[2025-04-17T21:10:14.559+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T21:10:14.563+0000] {sql.py:375} INFO - Running statement: 
+                    INSERT INTO documents (title, content, processed, file_path, page_count, file_hash) 
+                    VALUES (%s, %s, 0, %s, %s, %s)
+                    , parameters: ['BRICKELL HOME LUXURY.pdf', 'BRICKELL\n \nHOME\n \nLUXURY\n \n \nPRICE\n \nRANGE\n \nStarting\n \nat\n \n$4,500,000\n \nAMENITIES\n \nSignature\n \noceanfront\n \nrestaurant\n \nby\n \na\n \ncelebrated\n \nchef\n \nexclusive\n \nto\n \nresidents.\n \nTHE\n \nBUILDING\n \nA\n \nsingle\n \ntower\n \nfeaturing\n \n73\n \nluxurious\n \nresidences\n \nthrough\n \n17\n \nlevels.\n \nFrom\n \n2\n \nto\n \n4\n \nbedrooms,\n \nspanning\n \nbetween\n \n2,100\n \nto\n \n6,700\n \nsquare\n \nfeet.\n \nBeachside\n \nswimming\n \npool\n \nand\n \noutdoor\n \nspa\n \nwith\n \nsunbeds\n \nand\n \ncabanas.\n \nDEVELOPER\n \nDeveloped\n \nby\n \nMast\n \nCapital.\n \nARCHITECTURE\n \nA\n \ncontemporary\n \nand\n \nharmonious\n \ndesign\n \nby\n \nOMA.\n \nINTERIOR\n \nDESIGN\n \nPremium-quality\n \ninteriors\n \nand\n \ncurated\n \nfinishes\n \nby\n \nTara\n \nBernerd.\n \nBeachside\n \nfood\n \nand\n \nbeverage\n \nservice.\n \nDirect\n \nentry\n \nto\n \nthe\n \ndedicated\n \nbeach\n \nequipped\n \nwith\n \nlounge\n \nchairs,\n \numbrellas,\n \nand\n \nservice.\n \nSprawling\n \nconservatory\n \noffering\n \ndaily\n \nbreakfast\n \nbar.\n \nStylish\n \ncocktail\n \nlounge\n \nand\n \nspeakeasy .\n \nDramatic\n \ndouble-height\n \nlobby\n \nwith\n \nopen\n \nlounge\n \narea.\n \nCOMPLETION\n \nDATE\n \nThe\n \ncondominium\n \nis\n \nexpected\n \nto\n \nbe\n \nready\n \nfor\n \ndelivery\n \nby\n \n2026.\n \nLuxury\n \nguest\n \nsuites\n \nfor\n \nfriends\n \nand\n \nfamily .\n \nSunrise\n \nlounge\n \nwith\n \ncatering\n \nkitchen\n \nfor\n \nentertaining\n \nand\n \nevents.\n \nLOCA TION\n \nCharacterized\n \nby\n \nits\n \nsignature\n \nArt\n \nDeco\n \nstyle\n \nin\n \nplenty\n \nof\n \nlocations,\n \nMiami\n \nBeach\n \ncontains\n \nmore\n \nthan\n \n800\n \narchitecturally\n \nprotected\n \nbuildings\n \nand\n \nhotels\n \nfrom\n \nthe\n \n1930s\n \nand\n \n1940s.\n \nA\n \ncity\n \nto\n \nenjoy\n \nthe\n \nfinest\n \nof\n \ndining,\n \nnightlife,\n \nspas,\n \nand\n \nbeaches,\n \nor\n \nto\n \nvisit\n \nthe\n \nHaulover\n \nPark\n \nfor\n \nfishing,\n \nbike\n \nrides,\n \ntennis,\n \nor\n \ngolf.\n \nSpa,\n \nfitness\n \nwellness\n \ncenter ,\n \nand\n \nBicycle\n \nstorage.\n \nBespoke\n \nwine\n \nroom.\n \nSalon\n \nfor\n \npersonalized\n \nbeauty\n \nservices.\n \nScreening\n \nroom\n \nand\n \nchildren’ s\n \nplayroom.\n \nIntimate\n \ngarden\n \nand\n \nmeditation\n \nlounge\n \nareas.\n \n \nBRICKELL\n \nHOME\n \nLUXURY\n \n \nPRICE\n \nRANGE\n \nStarting\n \nat\n \n$8,000,000\n \nAMENITIES\n \nTHE\n \nBUILDING\n \nThis\n \nmodern\n \n25-story\n \ntower\n \nfeatures\n \n56\n \nspacious\n \noceanfront\n \nresidences\n \nfrom\n \n3\n \nto\n \n8\n \nbedrooms\n \nand\n \nfloorplans\n \nfrom\n \n3,300\n \nto\n \n12,600\n \nSq.\n \nFt.\n \nDEVELOPER\n \nDeveloped\n \nby\n \nRelated\n \nGroup\n \nand\n \nTwo\n \nRoads\n \nDevelopment.\n \nSignature\n \nrestaurant\n \nexclusive\n \nto\n \nresidents\n \nCurated\n \nsocial\n \nspaces\n \nResort-style\n \npools\n \nOutdoor\n \nspa\n \nPoolside\n \nservices\n \nARCHITECTURE\n \nDesigned\n \nby\n \nSkidmore,\n \nOwings\n \n&\n \nMerrill\n \n-\n \nSOM,\n \none\n \nof\n \nthe\n \nworld’ s\n \ntop\n \narchitectural\n \nfirms.\n \nPickleball\n \ncourt\n \nState-of-the-art\n \nfitness\n \nareas\n \nINTERIOR\n \nDESIGN\n \nUnique\n \ninterior\n \nspaces\n \nthanks\n \nto\n \nRottet\n \nStudio.\n \nVR\n \nsimulators\n \nCOMPLETION\n \nDATE\n \nThe\n \ncondominium\n \nis\n \nexpected\n \nto\n \nbe\n \nready\n \nfor\n \ndelivery\n \nby\n \n2026.\n \nLOCA TION\n \nBal\n \nHarbour\n \nwas\n \nborn\n \nof\n \na\n \nvision\n \nof\n \ninfinite\n \npossibility ,\n \nmaking\n \nit\n \nan\n \ninternationally\n \nrenowned\n \ndestination.\n \nToday ,\n \nBal\n \nHarbour\n \nis\n \namong\n \nthe\n \nmost\n \nelegant,\n \nexclusive,\n \nand\n \nsought-after\n \nbeach\n \ndestinations\n \nin\n \nSouth\n \nFlorida.\n \n \n \n \n \n \n \n \n \n \n \n \n \n', '/opt/***/data/BRICKELL HOME LUXURY.pdf', 2, 'a34968a4639f717b06b94acad53c1574']
+[2025-04-17T21:10:14.563+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T21:10:14.567+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T21:10:14.570+0000] {sql.py:375} INFO - Running statement: SELECT LAST_INSERT_ID(), parameters: None
+[2025-04-17T21:10:14.570+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T21:10:14.570+0000] {logging_mixin.py:149} INFO - Añadido nuevo documento BRICKELL HOME LUXURY.pdf (ID: 0) a la base de datos
+[2025-04-17T21:10:14.570+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T21:10:14.575+0000] {warnings.py:109} WARNING - /home/***/.local/lib/python3.9/site-packages/***/providers/common/sql/hooks/sql.py:201: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return psql.read_sql(sql, con=conn, params=parameters, **kwargs)
+
+[2025-04-17T21:10:14.589+0000] {logging_mixin.py:149} INFO - Recuperados 3 documentos para procesar
+[2025-04-17T21:10:14.590+0000] {python.py:183} INFO - Done. Returned value was: {'documents': [{'id': 1, 'title': 'BAYFRONT RESIDENCES.pdf', 'content': ' \nBAYFRONT\n \nRESIDENCES\n \n \nPRICE\n \nRANGE\n \nStarting\n \nat\n \n$9,000,000\n \nAMENITIES\n \nDirect\n \nBeach\n \nAccess\n \nTHE\n \nBUILDING\n \nShore\n \nClub\n \nfeatures\n \n18\n \nlevels\n \nand\n \n49\n \nelegant\n \nresidences\n \nwith\n \nfloor\n \nplans\n \nstarting\n \nat\n \n2,400\n \nup\n \nto\n \n7,000\n \nSq.\n \nFt.\n \nBeach\n \nService\n \nExpansive\n \nPool\n \nDecks\n \nExterior\n \nCafé\n \nDEVELOPER\n \nDeveloped\n \nby\n \nWitkof f.\n \nDining\n \nAreas\n \nARCHITECTURE\n \nAn\n \nexceptional\n \nredesign\n \nthanks\n \nto\n \nRobert\n \nA.M.\n \nStern\n \nArchitects.\n \nINTERIOR\n \nDESIGN\n \nFinishes\n \nand\n \ninterior\n \nareas\n \nby\n \nKobi\n \nKarp\n \nArchitecture\n \n&\n \nInterior\n \nDesign.\n \nCOMPLETION\n \nDATE\n \nExpected\n \nto\n \nbe\n \ndelivered\n \nby\n \n2026.\n \nLOCA TION\n \nCharacterized\n \nby\n \nits\n \nsignature\n \nArt\n \nDeco\n \nstyle\n \nin\n \nplenty\n \nof\n \nlocations,\n \nMiami\n \nBeach\n \ncontains\n \nmore\n \nthan\n \n800\n \narchitecturally\n \nprotected\n \nbuildings\n \nand\n \nhotels\n \nfrom\n \nthe\n \n1930s\n \nand\n \n1940s.\n \nA\n \ncity\n \nto\n \nenjoy\n \nthe\n \nfinest\n \nof\n \ndining,\n \nnightlife,\n \nspas,\n \nand\n \nbeaches,\n \nor\n \nto\n \nvi\n \n \n   \n', 'created_at': '2025-04-17 21:10:14', 'file_path': '/opt/***/data/BAYFRONT RESIDENCES.pdf', 'page_count': 1}, {'id': 2, 'title': 'UNA CLUB.pdf', 'content': "Document:\n \n \n \nUNA\n \nCLUB\n \nPRICE\n \nRANGE\n \nStarting\n \nat\n \n$4,500,000\n \nAMENITIES\n \nTHE\n \nBUILDING\n \nFeaturing\n \ntwo\n \ntowers\n \nand\n \n62\n \nfloors\n \nwith\n \n352\n \nlavish\n \nresidences,\n \nfrom\n \n2\n \nto\n \n5\n \nbedrooms\n \nspanning\n \nbetween\n \n1,785\n \nand\n \n10,000\n \nSq.\n \nFt.\n \nPrivate\n \nbeach\n \namenities\n \ninclude\n \ncabanas,\n \nchaise\n \nlounges,\n \nand\n \numbrellas.\n \nChildren\n \n/\n \nteen’ s\n \nclub.\n \nDEVELOPER\n \nDeveloped\n \nby\n \nFortune\n \nInternational\n \nand\n \nChâteau\n \nGroup.\n \nARCHITECTURE\n \nA\n \nunique\n \nand\n \nluxurious\n \ndesign\n \nby\n \nArquitectonica.\n \nDog\n \npark\n \nand\n \npet\n \nspa\n \non-site.\n \nPools\n \n-\n \nclub\n \nmembers\n \npool,\n \ntower\n \npool,\n \nlap\n \npool.\n \nSpa\n \nconcierge.\n \nPrivate\n \nsecluded\n \nareas.\n \nINTERIOR\n \nDESIGN\n \nSplendid\n \ninteriors\n \nby\n \nPatricia\n \nAnastassiadis.\n \nCOMPLETION\n \nDATE\n \nThe\n \nSouth\n \nTower\n \nwill\n \nbe\n \ndelivered\n \nin\n \n2027\n \nand\n \nthe\n \nNorth\n \nTower\n \nwill\n \nbe\n \ndelivered\n \nin\n \n2029.\n \nLOCA TION\n \nThe\n \nproject\n \nwill\n \nbe\n \nin\n \nSunny\n \nIsles\n \nBeach,\n \nright\n \non\n \nMiami’ s\n \ncelebrated\n \nCollins\n \nAvenue.\n \nThis\n \nprime\n \naddress\n \nwill\n \nposition\n \nresidents\n \namong\n \nnumerous\n \npopular\n \nentertainment\n \nvenues,\n \nplus\n \nit's\n \njust\n \nminutes\n \naway\n \nfrom\n \nAventura,\n \nBal\n \nHarbour ,\n \nand\n \nthe\n \nFort\n \nLauderdale\n \nAirport.\n \nOutdoor\n \nwellness\n \n&\n \nrelaxation\n \nterrace\n \nwith\n \nplunge\n \npools.\n \nSignature\n \nrestaurant\n \nopen\n \nto\n \nthe\n \npublic\n \nwith\n \nbar\n \nlounge\n \n&\n \nprivate\n \ndining\n \nroom.\n \nOceanfront\n \nterrace\n \ndining\n \n&\n \nlounge.\n \nMulti-purpose\n \nevents\n \nlawn\n \n&\n \npavilion.\n \nThe\n \nbusiness\n \nclub\n \nfeatures\n \na\n \nJohn\n \nJacob\n \nAstor\n \nboardroom,\n \nprivate\n \noffices,\n \na\n \nconference\n \nroom,\n \nco-working\n \nspaces,\n \nand\n \na\n \ntrading\n \nroom.\n \nMezzanine\n \nwith\n \nprivate\n \ndining\n \nareas\n \nwith\n \nchef’s\n \nkitchen\n \nand\n \nprep\n \narea.\n \n", 'created_at': '2025-04-17 21:10:14', 'file_path': '/opt/***/data/UNA CLUB.pdf', 'page_count': 1}, {'id': 3, 'title': 'BRICKELL HOME LUXURY.pdf', 'content': 'BRICKELL\n \nHOME\n \nLUXURY\n \n \nPRICE\n \nRANGE\n \nStarting\n \nat\n \n$4,500,000\n \nAMENITIES\n \nSignature\n \noceanfront\n \nrestaurant\n \nby\n \na\n \ncelebrated\n \nchef\n \nexclusive\n \nto\n \nresidents.\n \nTHE\n \nBUILDING\n \nA\n \nsingle\n \ntower\n \nfeaturing\n \n73\n \nluxurious\n \nresidences\n \nthrough\n \n17\n \nlevels.\n \nFrom\n \n2\n \nto\n \n4\n \nbedrooms,\n \nspanning\n \nbetween\n \n2,100\n \nto\n \n6,700\n \nsquare\n \nfeet.\n \nBeachside\n \nswimming\n \npool\n \nand\n \noutdoor\n \nspa\n \nwith\n \nsunbeds\n \nand\n \ncabanas.\n \nDEVELOPER\n \nDeveloped\n \nby\n \nMast\n \nCapital.\n \nARCHITECTURE\n \nA\n \ncontemporary\n \nand\n \nharmonious\n \ndesign\n \nby\n \nOMA.\n \nINTERIOR\n \nDESIGN\n \nPremium-quality\n \ninteriors\n \nand\n \ncurated\n \nfinishes\n \nby\n \nTara\n \nBernerd.\n \nBeachside\n \nfood\n \nand\n \nbeverage\n \nservice.\n \nDirect\n \nentry\n \nto\n \nthe\n \ndedicated\n \nbeach\n \nequipped\n \nwith\n \nlounge\n \nchairs,\n \numbrellas,\n \nand\n \nservice.\n \nSprawling\n \nconservatory\n \noffering\n \ndaily\n \nbreakfast\n \nbar.\n \nStylish\n \ncocktail\n \nlounge\n \nand\n \nspeakeasy .\n \nDramatic\n \ndouble-height\n \nlobby\n \nwith\n \nopen\n \nlounge\n \narea.\n \nCOMPLETION\n \nDATE\n \nThe\n \ncondominium\n \nis\n \nexpected\n \nto\n \nbe\n \nready\n \nfor\n \ndelivery\n \nby\n \n2026.\n \nLuxury\n \nguest\n \nsuites\n \nfor\n \nfriends\n \nand\n \nfamily .\n \nSunrise\n \nlounge\n \nwith\n \ncatering\n \nkitchen\n \nfor\n \nentertaining\n \nand\n \nevents.\n \nLOCA TION\n \nCharacterized\n \nby\n \nits\n \nsignature\n \nArt\n \nDeco\n \nstyle\n \nin\n \nplenty\n \nof\n \nlocations,\n \nMiami\n \nBeach\n \ncontains\n \nmore\n \nthan\n \n800\n \narchitecturally\n \nprotected\n \nbuildings\n \nand\n \nhotels\n \nfrom\n \nthe\n \n1930s\n \nand\n \n1940s.\n \nA\n \ncity\n \nto\n \nenjoy\n \nthe\n \nfinest\n \nof\n \ndining,\n \nnightlife,\n \nspas,\n \nand\n \nbeaches,\n \nor\n \nto\n \nvisit\n \nthe\n \nHaulover\n \nPark\n \nfor\n \nfishing,\n \nbike\n \nrides,\n \ntennis,\n \nor\n \ngolf.\n \nSpa,\n \nfitness\n \nwellness\n \ncenter ,\n \nand\n \nBicycle\n \nstorage.\n \nBespoke\n \nwine\n \nroom.\n \nSalon\n \nfor\n \npersonalized\n \nbeauty\n \nservices.\n \nScreening\n \nroom\n \nand\n \nchildren’ s\n \nplayroom.\n \nIntimate\n \ngarden\n \nand\n \nmeditation\n \nlounge\n \nareas.\n \n \nBRICKELL\n \nHOME\n \nLUXURY\n \n \nPRICE\n \nRANGE\n \nStarting\n \nat\n \n$8,000,000\n \nAMENITIES\n \nTHE\n \nBUILDING\n \nThis\n \nmodern\n \n25-story\n \ntower\n \nfeatures\n \n56\n \nspacious\n \noceanfront\n \nresidences\n \nfrom\n \n3\n \nto\n \n8\n \nbedrooms\n \nand\n \nfloorplans\n \nfrom\n \n3,300\n \nto\n \n12,600\n \nSq.\n \nFt.\n \nDEVELOPER\n \nDeveloped\n \nby\n \nRelated\n \nGroup\n \nand\n \nTwo\n \nRoads\n \nDevelopment.\n \nSignature\n \nrestaurant\n \nexclusive\n \nto\n \nresidents\n \nCurated\n \nsocial\n \nspaces\n \nResort-style\n \npools\n \nOutdoor\n \nspa\n \nPoolside\n \nservices\n \nARCHITECTURE\n \nDesigned\n \nby\n \nSkidmore,\n \nOwings\n \n&\n \nMerrill\n \n-\n \nSOM,\n \none\n \nof\n \nthe\n \nworld’ s\n \ntop\n \narchitectural\n \nfirms.\n \nPickleball\n \ncourt\n \nState-of-the-art\n \nfitness\n \nareas\n \nINTERIOR\n \nDESIGN\n \nUnique\n \ninterior\n \nspaces\n \nthanks\n \nto\n \nRottet\n \nStudio.\n \nVR\n \nsimulators\n \nCOMPLETION\n \nDATE\n \nThe\n \ncondominium\n \nis\n \nexpected\n \nto\n \nbe\n \nready\n \nfor\n \ndelivery\n \nby\n \n2026.\n \nLOCA TION\n \nBal\n \nHarbour\n \nwas\n \nborn\n \nof\n \na\n \nvision\n \nof\n \ninfinite\n \npossibility ,\n \nmaking\n \nit\n \nan\n \ninternationally\n \nrenowned\n \ndestination.\n \nToday ,\n \nBal\n \nHarbour\n \nis\n \namong\n \nthe\n \nmost\n \nelegant,\n \nexclusive,\n \nand\n \nsought-after\n \nbeach\n \ndestinations\n \nin\n \nSouth\n \nFlorida.\n \n \n \n \n \n \n \n \n \n \n \n \n \n', 'created_at': '2025-04-17 21:10:14', 'file_path': '/opt/***/data/BRICKELL HOME LUXURY.pdf', 'page_count': 2}], 'doc_ids': [1, 2, 3]}
+[2025-04-17T21:10:14.603+0000] {taskinstance.py:1368} INFO - Marking task as SUCCESS. dag_id=pdf_processing_embedding_dag, task_id=get_documents_task, execution_date=20250417T211010, start_date=20250417T211014, end_date=20250417T211014
+[2025-04-17T21:10:14.629+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-04-17T21:10:14.644+0000] {taskinstance.py:2674} INFO - 1 downstream tasks scheduled from follow-on schedule check

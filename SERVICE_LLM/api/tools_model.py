@@ -7,6 +7,7 @@ from typing import Dict, List, Any, Tuple, Optional
 import nltk
 from nltk.tokenize import sent_tokenize
 import logging
+import unicodedata
 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -29,12 +30,10 @@ class RealEstatePDFProcessor:
     }
     
     def __init__(self, min_chunk_size: int = 200, max_chunk_size: int = 1000):
-
         self.min_chunk_size = min_chunk_size
         self.max_chunk_size = max_chunk_size
     
     def extract_text_from_pdf(self, pdf_path: str) -> str:
-
         try:
             doc = fitz.open(pdf_path)
             text = ""
@@ -48,8 +47,24 @@ class RealEstatePDFProcessor:
             logger.error(f"Error extracting text from PDF: {e}")
             raise
     
+    def clean_text(self, text: str) -> str:
+        if not text:
+            return ""
+        
+        if not isinstance(text, str):
+            text = str(text)
+        
+        text = text.lower()
+        
+        text = unicodedata.normalize('NFKD', text).encode('ASCII', 'ignore').decode('utf-8')
+        
+        text = re.sub(r'[^\w\s.,;:!?-]', ' ', text)
+        
+        text = re.sub(r'\s+', ' ', text)
+        
+        return text.strip()
+    
     def chunk_text(self, text: str) -> List[str]:
-
         sentences = sent_tokenize(text)
         
         chunks = []
@@ -89,21 +104,29 @@ class RealEstatePDFProcessor:
         return metadata
     
     def process_pdf(self, pdf_path: str, doc_id: str) -> Dict[str, Any]:
-
         logger.info(f"Processing PDF: {pdf_path}")
         
-        full_text = self.extract_text_from_pdf(pdf_path)
+        # Extract raw text
+        raw_text = self.extract_text_from_pdf(pdf_path)
         
-        chunks = self.chunk_text(full_text)
+        # Clean text (similar to the DAG process)
+        cleaned_text = self.clean_text(raw_text)
+        logger.info(f"Cleaned text: reduced from {len(raw_text)} to {len(cleaned_text)} characters")
+        
+        # Create chunks from cleaned text
+        chunks = self.chunk_text(cleaned_text)
         logger.info(f"Created {len(chunks)} text chunks")
         
-        metadata = self.extract_metadata(full_text)
+        # Extract metadata from original text for better pattern matching
+        metadata = self.extract_metadata(raw_text)
         logger.info(f"Extracted metadata: {list(metadata.keys())}")
         
         processed_chunks = []
         for i, chunk_text in enumerate(chunks):
-
-            chunk_metadata = self.extract_metadata(chunk_text)
+            # Extract metadata for each chunk from original text segments
+            raw_chunk_idx = raw_text.find(chunk_text)
+            raw_chunk_text = raw_text[raw_chunk_idx:raw_chunk_idx + len(chunk_text) + 100] if raw_chunk_idx >= 0 else chunk_text
+            chunk_metadata = self.extract_metadata(raw_chunk_text)
             
             chunk_data = {
                 "chunk_id": f"{doc_id}_chunk_{i}",
@@ -117,14 +140,14 @@ class RealEstatePDFProcessor:
             "metadata": metadata,
             "page_count": self._get_page_count(pdf_path),
             "chunks": processed_chunks,
-            "full_text_length": len(full_text),
+            "full_text_length": len(raw_text),
+            "clean_text_length": len(cleaned_text),
             "chunk_count": len(chunks)
         }
         
         return result
     
     def _get_page_count(self, pdf_path: str) -> int:
-        """Get the number of pages in a PDF file."""
         try:
             doc = fitz.open(pdf_path)
             return len(doc)
@@ -155,7 +178,6 @@ class RealEstatePDFProcessor:
             return []
 
     def extract_images_from_pdf(self, pdf_path: str, output_dir: str) -> List[str]:
-
         image_paths = []
         
         try:
@@ -186,3 +208,23 @@ class RealEstatePDFProcessor:
         except Exception as e:
             logger.error(f"Error extracting images from PDF: {e}")
             return []
+            
+    def check_pdf_has_text(self, pdf_path: str) -> bool:
+        try:
+            import pdfplumber
+            
+            with pdfplumber.open(pdf_path) as pdf:
+                total_text = ""
+                pages_to_check = min(5, len(pdf.pages))
+                
+                for i in range(pages_to_check):
+                    page = pdf.pages[i]
+                    text = page.extract_text() or ""
+                    total_text += text
+                
+                if len(total_text.strip()) > 100:
+                    return True
+                return False
+        except Exception as e:
+            logger.error(f"Error checking PDF text content: {e}")
+            return False
