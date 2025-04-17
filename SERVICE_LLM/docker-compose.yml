@@ -24,8 +24,7 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-.}/data:/opt/airflow/data
     - ${AIRFLOW_PROJ_DIR:-.}/models:/opt/airflow/models
     - ${AIRFLOW_PROJ_DIR:-.}/api:/opt/airflow/api
-    - ${AIRFLOW_PROJ_DIR:-.}/airflow/huggingface_cache:/opt/airflow/huggingface_cache 
-
+    
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on

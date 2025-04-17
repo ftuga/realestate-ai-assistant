@@ -1,0 +1,34 @@
+[2025-04-17T11:35:11.148+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pdf_processing_embedding_dag.save_to_minio_task manual__2025-04-17T11:35:03.919689+00:00 [queued]>
+[2025-04-17T11:35:11.152+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pdf_processing_embedding_dag.save_to_minio_task manual__2025-04-17T11:35:03.919689+00:00 [queued]>
+[2025-04-17T11:35:11.153+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2025-04-17T11:35:11.158+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): save_to_minio_task> on 2025-04-17 11:35:03.919689+00:00
+[2025-04-17T11:35:11.161+0000] {standard_task_runner.py:57} INFO - Started process 96 to run task
+[2025-04-17T11:35:11.163+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'pdf_processing_embedding_dag', 'save_to_minio_task', 'manual__2025-04-17T11:35:03.919689+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/Text_processor.py', '--cfg-path', '/tmp/tmp705ef0ly']
+[2025-04-17T11:35:11.166+0000] {standard_task_runner.py:85} INFO - Job 7: Subtask save_to_minio_task
+[2025-04-17T11:35:11.190+0000] {task_command.py:410} INFO - Running <TaskInstance: pdf_processing_embedding_dag.save_to_minio_task manual__2025-04-17T11:35:03.919689+00:00 [running]> on host 33b29afd88e5
+[2025-04-17T11:35:11.226+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='pdf_processing_embedding_dag' AIRFLOW_CTX_TASK_ID='save_to_minio_task' AIRFLOW_CTX_EXECUTION_DATE='2025-04-17T11:35:03.919689+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-04-17T11:35:03.919689+00:00'
+[2025-04-17T11:35:11.238+0000] {logging_mixin.py:149} INFO - No se encontró lista de documentos previa, creando nueva: S3 operation failed; code: NoSuchKey, message: The specified key does not exist., resource: /llm-data/metadata/document_list.json, request_id: 183717F2928E8FD5, host_id: dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8, bucket_name: llm-data, object_name: metadata/document_list.json
+[2025-04-17T11:35:11.239+0000] {logging_mixin.py:149} INFO - Eliminado embedding anterior para documento 1
+[2025-04-17T11:35:11.244+0000] {logging_mixin.py:149} INFO - Eliminado texto procesado anterior para documento 1
+[2025-04-17T11:35:11.247+0000] {logging_mixin.py:149} INFO - Documento 1 (BAYFRONT RESIDENCES.pdf) actualizado en MinIO
+[2025-04-17T11:35:11.248+0000] {logging_mixin.py:149} INFO - Eliminado embedding anterior para documento 2
+[2025-04-17T11:35:11.251+0000] {logging_mixin.py:149} INFO - Eliminado texto procesado anterior para documento 2
+[2025-04-17T11:35:11.254+0000] {logging_mixin.py:149} INFO - Documento 2 (UNA CLUB.pdf) actualizado en MinIO
+[2025-04-17T11:35:11.255+0000] {logging_mixin.py:149} INFO - Eliminado embedding anterior para documento 3
+[2025-04-17T11:35:11.259+0000] {logging_mixin.py:149} INFO - Eliminado texto procesado anterior para documento 3
+[2025-04-17T11:35:11.262+0000] {logging_mixin.py:149} INFO - Documento 3 (BRICKELL HOME LUXURY.pdf) actualizado en MinIO
+[2025-04-17T11:35:11.272+0000] {logging_mixin.py:149} INFO - Metadata de modelos guardada en MinIO
+[2025-04-17T11:35:11.273+0000] {crypto.py:83} WARNING - empty cryptography key - values will not be stored encrypted.
+[2025-04-17T11:35:11.273+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:35:11.281+0000] {sql.py:375} INFO - Running statement: 
+        UPDATE documents 
+        SET processed = 1, 
+            processed_at = NOW() 
+        WHERE id IN (1,2,3)
+        , parameters: None
+[2025-04-17T11:35:11.282+0000] {sql.py:384} INFO - Rows affected: 3
+[2025-04-17T11:35:11.285+0000] {logging_mixin.py:149} INFO - Actualizados 3 documentos en la base de datos
+[2025-04-17T11:35:11.286+0000] {python.py:183} INFO - Done. Returned value was: None
+[2025-04-17T11:35:11.291+0000] {taskinstance.py:1368} INFO - Marking task as SUCCESS. dag_id=pdf_processing_embedding_dag, task_id=save_to_minio_task, execution_date=20250417T113503, start_date=20250417T113511, end_date=20250417T113511
+[2025-04-17T11:35:11.334+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-04-17T11:35:11.345+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -116,7 +116,7 @@ print_message "Model Management Instructions:" "${BLUE}"
 echo -e "  1. ${YELLOW}Access Airflow UI at http://localhost:8080${NC}"
 echo -e "  2. ${YELLOW}Activate the 'ollama_model_management' DAG${NC}"
 echo -e "  3. ${YELLOW}Trigger the DAG to download initial models${NC}"
-echo -e "  4. ${YELLOW}The 'fine_tune_model_task' DAG will run weekly to keep models clean and already to use in main${NC}"
+echo -e "  4. ${YELLOW}The 'fine_tune_model_task' DAG runs weekly to download models and generate embeddings, making them ready for use in the main pipeline.${NC}"
 
 echo ""
 print_message "System is ready! Access the following services:" "${GREEN}"

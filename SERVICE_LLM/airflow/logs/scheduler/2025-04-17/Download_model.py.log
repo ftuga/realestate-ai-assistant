@@ -6065,3 +6065,494 @@ IndentationError: unexpected indent
 [2025-04-17T10:45:07.633+0000] {logging_mixin.py:149} INFO - [2025-04-17T10:45:07.633+0000] {dag.py:2726} INFO - Sync 1 DAGs
 [2025-04-17T10:45:07.651+0000] {logging_mixin.py:149} INFO - [2025-04-17T10:45:07.651+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
 [2025-04-17T10:45:07.665+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.084 seconds
+[2025-04-17T11:09:52.814+0000] {processor.py:156} INFO - Started process (PID=33) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:09:52.815+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:09:52.816+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:09:52.816+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:09:52.829+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:09:53.049+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:09:53.049+0000] {manager.py:504} INFO - Created Permission View: can delete on DAG:model_downloader_dag
+[2025-04-17T11:09:53.057+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:09:53.056+0000] {manager.py:504} INFO - Created Permission View: can edit on DAG:model_downloader_dag
+[2025-04-17T11:09:53.062+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:09:53.062+0000] {manager.py:504} INFO - Created Permission View: can read on DAG:model_downloader_dag
+[2025-04-17T11:09:53.062+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:09:53.062+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:09:53.071+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:09:53.071+0000] {dag.py:2747} INFO - Creating ORM DAG for model_downloader_dag
+[2025-04-17T11:09:53.078+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:09:53.078+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:09:53.097+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.285 seconds
+[2025-04-17T11:10:23.759+0000] {processor.py:156} INFO - Started process (PID=61) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:10:23.760+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:10:23.760+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:10:23.760+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:10:23.767+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:10:23.786+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:10:23.786+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:10:23.799+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:10:23.799+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:10:23.812+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.055 seconds
+[2025-04-17T11:10:53.913+0000] {processor.py:156} INFO - Started process (PID=90) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:10:53.914+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:10:53.915+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:10:53.915+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:10:53.922+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:10:53.942+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:10:53.942+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:10:53.957+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:10:53.957+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:10:53.971+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.060 seconds
+[2025-04-17T11:11:27.657+0000] {processor.py:156} INFO - Started process (PID=120) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:11:27.658+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:11:27.658+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:11:27.658+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:11:27.666+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:11:27.704+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:11:27.704+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:11:27.733+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:11:27.732+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:11:27.753+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.099 seconds
+[2025-04-17T11:11:57.847+0000] {processor.py:156} INFO - Started process (PID=148) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:11:57.848+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:11:57.848+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:11:57.848+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:11:57.857+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:11:57.877+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:11:57.877+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:11:57.891+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:11:57.891+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:11:57.904+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.059 seconds
+[2025-04-17T11:12:28.103+0000] {processor.py:156} INFO - Started process (PID=177) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:12:28.104+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:12:28.104+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:12:28.104+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:12:28.111+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:12:28.131+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:12:28.131+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:12:28.145+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:12:28.145+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:12:28.230+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.130 seconds
+[2025-04-17T11:12:58.260+0000] {processor.py:156} INFO - Started process (PID=206) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:12:58.262+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:12:58.263+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:12:58.262+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:12:58.362+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:12:58.378+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:12:58.378+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:12:58.389+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:12:58.389+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:12:58.402+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.144 seconds
+[2025-04-17T11:13:28.614+0000] {processor.py:156} INFO - Started process (PID=235) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:13:28.615+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:13:28.615+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:13:28.615+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:13:28.621+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:13:28.639+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:13:28.639+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:13:28.653+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:13:28.653+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:13:28.665+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.052 seconds
+[2025-04-17T11:13:58.764+0000] {processor.py:156} INFO - Started process (PID=264) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:13:58.766+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:13:58.766+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:13:58.766+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:13:58.772+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:13:58.788+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:13:58.788+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:13:58.800+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:13:58.800+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:13:58.810+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.048 seconds
+[2025-04-17T11:14:28.893+0000] {processor.py:156} INFO - Started process (PID=293) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:14:28.895+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:14:28.895+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:14:28.895+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:14:28.901+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:14:28.917+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:14:28.917+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:14:28.929+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:14:28.929+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:14:28.938+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.047 seconds
+[2025-04-17T11:15:02.614+0000] {processor.py:156} INFO - Started process (PID=322) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:15:02.616+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:15:02.616+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:15:02.616+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:15:02.622+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:15:02.637+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:15:02.637+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:15:02.648+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:15:02.648+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:15:02.658+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.046 seconds
+[2025-04-17T11:15:32.810+0000] {processor.py:156} INFO - Started process (PID=351) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:15:32.812+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:15:32.812+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:15:32.812+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:15:32.818+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:15:32.833+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:15:32.833+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:15:32.843+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:15:32.843+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:15:32.853+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.045 seconds
+[2025-04-17T11:16:02.972+0000] {processor.py:156} INFO - Started process (PID=379) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:16:02.973+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:16:02.974+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:16:02.974+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:16:02.979+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:16:02.996+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:16:02.996+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:16:03.007+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:16:03.007+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:16:03.016+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.047 seconds
+[2025-04-17T11:16:33.142+0000] {processor.py:156} INFO - Started process (PID=401) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:16:33.143+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:16:33.144+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:16:33.144+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:16:33.149+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:16:33.167+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:16:33.167+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:16:33.179+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:16:33.179+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:16:33.189+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.049 seconds
+[2025-04-17T11:17:03.283+0000] {processor.py:156} INFO - Started process (PID=430) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:17:03.284+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:17:03.285+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:17:03.285+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:17:03.290+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:17:03.305+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:17:03.305+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:17:03.316+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:17:03.316+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:17:03.325+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.044 seconds
+[2025-04-17T11:17:33.404+0000] {processor.py:156} INFO - Started process (PID=459) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:17:33.405+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:17:33.406+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:17:33.405+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:17:33.411+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:17:33.428+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:17:33.428+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:17:33.439+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:17:33.439+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:17:33.449+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.047 seconds
+[2025-04-17T11:18:03.533+0000] {processor.py:156} INFO - Started process (PID=488) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:18:03.535+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:18:03.535+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:18:03.535+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:18:03.541+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:18:03.559+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:18:03.559+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:18:03.570+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:18:03.570+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:18:03.580+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.049 seconds
+[2025-04-17T11:18:37.282+0000] {processor.py:156} INFO - Started process (PID=517) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:18:37.284+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:18:37.284+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:18:37.284+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:18:37.290+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:18:37.307+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:18:37.307+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:18:37.321+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:18:37.321+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:18:37.331+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.050 seconds
+[2025-04-17T11:19:07.438+0000] {processor.py:156} INFO - Started process (PID=546) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:19:07.439+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:19:07.439+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:19:07.439+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:19:07.446+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:19:07.462+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:19:07.462+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:19:07.474+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:19:07.474+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:19:07.486+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.050 seconds
+[2025-04-17T11:19:37.603+0000] {processor.py:156} INFO - Started process (PID=575) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:19:37.605+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:19:37.605+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:19:37.605+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:19:37.612+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:19:37.633+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:19:37.633+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:19:37.650+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:19:37.650+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:19:37.666+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.066 seconds
+[2025-04-17T11:20:07.740+0000] {processor.py:156} INFO - Started process (PID=604) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:20:07.740+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:20:07.740+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:20:07.740+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:20:07.747+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:20:07.763+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:20:07.763+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:20:07.775+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:20:07.774+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:20:07.783+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.046 seconds
+[2025-04-17T11:20:37.861+0000] {processor.py:156} INFO - Started process (PID=633) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:20:37.863+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:20:37.864+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:20:37.864+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:20:37.870+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:20:37.889+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:20:37.889+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:20:37.903+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:20:37.903+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:20:37.913+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.054 seconds
+[2025-04-17T11:21:07.972+0000] {processor.py:156} INFO - Started process (PID=661) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:21:07.974+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:21:07.975+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:21:07.975+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:21:07.981+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:21:07.996+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:21:07.996+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:21:08.007+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:21:08.007+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:21:08.016+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.045 seconds
+[2025-04-17T11:21:38.436+0000] {processor.py:156} INFO - Started process (PID=690) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:21:38.436+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:21:38.437+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:21:38.437+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:21:38.443+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:21:38.461+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:21:38.461+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:21:38.474+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:21:38.474+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:21:38.486+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.052 seconds
+[2025-04-17T11:22:12.033+0000] {processor.py:156} INFO - Started process (PID=719) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:22:12.034+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:22:12.035+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:22:12.035+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:22:12.041+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:22:12.056+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:22:12.056+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:22:12.067+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:22:12.067+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:22:12.076+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.045 seconds
+[2025-04-17T11:22:42.188+0000] {processor.py:156} INFO - Started process (PID=748) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:22:42.190+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:22:42.190+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:22:42.190+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:22:42.196+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:22:42.214+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:22:42.214+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:22:42.227+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:22:42.227+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:22:42.238+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.052 seconds
+[2025-04-17T11:23:12.316+0000] {processor.py:156} INFO - Started process (PID=770) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:23:12.317+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:23:12.318+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:23:12.318+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:23:12.323+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:23:12.339+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:23:12.339+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:23:12.349+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:23:12.349+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:23:12.358+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.044 seconds
+[2025-04-17T11:23:42.453+0000] {processor.py:156} INFO - Started process (PID=799) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:23:42.455+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:23:42.455+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:23:42.455+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:23:42.461+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:23:42.478+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:23:42.478+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:23:42.493+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:23:42.493+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:23:42.504+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.053 seconds
+[2025-04-17T11:24:12.593+0000] {processor.py:156} INFO - Started process (PID=828) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:24:12.594+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:24:12.595+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:24:12.595+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:24:12.601+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:24:12.618+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:24:12.618+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:24:12.629+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:24:12.629+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:24:12.639+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.048 seconds
+[2025-04-17T11:24:42.773+0000] {processor.py:156} INFO - Started process (PID=857) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:24:42.774+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:24:42.774+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:24:42.774+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:24:42.780+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:24:42.797+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:24:42.797+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:24:42.808+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:24:42.808+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:24:42.819+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.048 seconds
+[2025-04-17T11:25:12.930+0000] {processor.py:156} INFO - Started process (PID=886) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:25:12.932+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:25:12.932+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:25:12.932+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:25:12.938+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:25:12.953+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:25:12.953+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:25:12.964+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:25:12.964+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:25:12.974+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.045 seconds
+[2025-04-17T11:25:43.071+0000] {processor.py:156} INFO - Started process (PID=915) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:25:43.072+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:25:43.073+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:25:43.073+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:25:43.078+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:25:43.095+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:25:43.094+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:25:43.106+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:25:43.106+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:25:43.117+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.048 seconds
+[2025-04-17T11:26:13.232+0000] {processor.py:156} INFO - Started process (PID=944) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:26:13.233+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:26:13.234+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:26:13.234+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:26:13.242+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:26:13.262+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:26:13.262+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:26:13.275+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:26:13.275+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:26:13.286+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.057 seconds
+[2025-04-17T11:26:43.355+0000] {processor.py:156} INFO - Started process (PID=978) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:26:43.356+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:26:43.356+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:26:43.356+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:26:43.362+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:26:43.377+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:26:43.377+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:26:43.389+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:26:43.388+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:26:43.398+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.045 seconds
+[2025-04-17T11:27:13.528+0000] {processor.py:156} INFO - Started process (PID=1007) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:27:13.530+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:27:13.531+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:27:13.531+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:27:13.537+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:27:13.553+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:27:13.553+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:27:13.565+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:27:13.565+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:27:13.575+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.049 seconds
+[2025-04-17T11:27:43.718+0000] {processor.py:156} INFO - Started process (PID=1029) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:27:43.719+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:27:43.719+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:27:43.719+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:27:43.726+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:27:43.742+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:27:43.742+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:27:43.754+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:27:43.754+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:27:43.765+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.049 seconds
+[2025-04-17T11:28:13.843+0000] {processor.py:156} INFO - Started process (PID=1058) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:28:13.844+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:28:13.845+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:28:13.845+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:28:13.850+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:28:13.866+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:28:13.866+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:28:13.877+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:28:13.877+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:28:13.886+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.045 seconds
+[2025-04-17T11:28:46.028+0000] {processor.py:156} INFO - Started process (PID=1087) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:28:46.030+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:28:46.030+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:28:46.030+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:28:46.036+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:28:46.052+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:28:46.052+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:28:46.062+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:28:46.062+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:28:46.073+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.046 seconds
+[2025-04-17T11:29:16.157+0000] {processor.py:156} INFO - Started process (PID=1116) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:29:16.158+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:29:16.159+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:29:16.159+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:29:16.165+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:29:16.183+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:29:16.182+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:29:16.195+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:29:16.195+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:29:16.207+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.052 seconds
+[2025-04-17T11:29:46.321+0000] {processor.py:156} INFO - Started process (PID=1145) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:29:46.322+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:29:46.323+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:29:46.323+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:29:46.328+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:29:46.344+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:29:46.344+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:29:46.356+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:29:46.356+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:29:46.367+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.048 seconds
+[2025-04-17T11:30:16.487+0000] {processor.py:156} INFO - Started process (PID=1174) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:30:16.488+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:30:16.489+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:30:16.489+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:30:16.495+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:30:16.512+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:30:16.511+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:30:16.523+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:30:16.523+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:30:16.532+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.048 seconds
+[2025-04-17T11:30:46.625+0000] {processor.py:156} INFO - Started process (PID=1203) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:30:46.626+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:30:46.627+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:30:46.627+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:30:46.632+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:30:46.647+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:30:46.647+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:30:46.658+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:30:46.658+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:30:46.668+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.045 seconds
+[2025-04-17T11:31:16.791+0000] {processor.py:156} INFO - Started process (PID=1232) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:31:16.791+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:31:16.792+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:31:16.792+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:31:16.798+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:31:16.816+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:31:16.816+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:31:16.828+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:31:16.828+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:31:16.837+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.048 seconds
+[2025-04-17T11:31:47.474+0000] {processor.py:156} INFO - Started process (PID=1241) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:31:47.475+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:31:47.476+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:31:47.475+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:31:47.481+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:31:47.505+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:31:47.505+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:31:47.522+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:31:47.522+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:31:47.625+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.152 seconds
+[2025-04-17T11:32:21.315+0000] {processor.py:156} INFO - Started process (PID=1270) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:32:21.315+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:32:21.315+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:32:21.315+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:32:21.324+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:32:21.353+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:32:21.353+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:32:21.379+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:32:21.379+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:32:21.401+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.089 seconds
+[2025-04-17T11:32:51.522+0000] {processor.py:156} INFO - Started process (PID=1298) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:32:51.523+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:32:51.524+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:32:51.524+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:32:51.529+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:32:51.547+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:32:51.547+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:32:51.558+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:32:51.558+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:32:51.636+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.116 seconds
+[2025-04-17T11:33:21.662+0000] {processor.py:156} INFO - Started process (PID=1327) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:33:21.664+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:33:21.664+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:33:21.664+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:33:21.670+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:33:21.687+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:33:21.687+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:33:21.697+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:33:21.697+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:33:21.707+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.047 seconds
+[2025-04-17T11:34:17.024+0000] {processor.py:156} INFO - Started process (PID=31) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:34:17.025+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:34:17.026+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:34:17.026+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:34:17.038+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:34:17.199+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:34:17.199+0000] {manager.py:504} INFO - Created Permission View: can delete on DAG:model_downloader_dag
+[2025-04-17T11:34:17.205+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:34:17.205+0000] {manager.py:504} INFO - Created Permission View: can edit on DAG:model_downloader_dag
+[2025-04-17T11:34:17.210+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:34:17.210+0000] {manager.py:504} INFO - Created Permission View: can read on DAG:model_downloader_dag
+[2025-04-17T11:34:17.210+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:34:17.210+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:34:17.217+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:34:17.217+0000] {dag.py:2747} INFO - Creating ORM DAG for model_downloader_dag
+[2025-04-17T11:34:17.224+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:34:17.224+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:34:17.242+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.220 seconds
+[2025-04-17T11:34:47.748+0000] {processor.py:156} INFO - Started process (PID=59) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:34:47.749+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:34:47.750+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:34:47.750+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:34:47.758+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:34:47.781+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:34:47.781+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:34:47.796+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:34:47.796+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:34:47.810+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.065 seconds
+[2025-04-17T11:35:20.504+0000] {processor.py:156} INFO - Started process (PID=89) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:35:20.505+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:35:20.506+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:35:20.505+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:35:20.511+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:35:20.560+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:35:20.560+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:35:20.595+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:35:20.594+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:35:20.609+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.106 seconds
+[2025-04-17T11:35:50.706+0000] {processor.py:156} INFO - Started process (PID=116) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:35:50.707+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:35:50.707+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:35:50.707+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:35:50.713+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:35:50.731+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:35:50.731+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:35:50.746+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:35:50.746+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:35:50.757+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.053 seconds
+[2025-04-17T11:36:20.859+0000] {processor.py:156} INFO - Started process (PID=145) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:36:20.861+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:36:20.862+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:36:20.862+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:36:20.867+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:36:20.885+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:36:20.885+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:36:20.896+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:36:20.896+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:36:20.905+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.048 seconds
+[2025-04-17T11:36:51.097+0000] {processor.py:156} INFO - Started process (PID=174) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:36:51.099+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:36:51.099+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:36:51.099+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:36:51.105+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:36:51.121+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:36:51.121+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:36:51.133+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:36:51.133+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:36:51.212+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.117 seconds
+[2025-04-17T11:37:21.252+0000] {processor.py:156} INFO - Started process (PID=203) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:37:21.254+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:37:21.255+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:37:21.255+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:37:21.330+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:37:21.346+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:37:21.346+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:37:21.357+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:37:21.357+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:37:21.368+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.118 seconds
+[2025-04-17T11:37:51.472+0000] {processor.py:156} INFO - Started process (PID=232) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:37:51.473+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:37:51.473+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:37:51.473+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:37:51.482+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:37:51.502+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:37:51.501+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:37:51.516+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:37:51.516+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:37:51.527+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.058 seconds
+[2025-04-17T11:38:21.635+0000] {processor.py:156} INFO - Started process (PID=261) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:38:21.637+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:38:21.638+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:38:21.637+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:38:21.646+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:38:21.664+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:38:21.664+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:38:21.677+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:38:21.677+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:38:21.688+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.055 seconds
+[2025-04-17T11:38:55.378+0000] {processor.py:156} INFO - Started process (PID=290) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:38:55.379+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:38:55.379+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:38:55.379+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:38:55.386+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:38:55.404+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:38:55.404+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:38:55.417+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:38:55.416+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:38:55.428+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.052 seconds
+[2025-04-17T11:39:25.567+0000] {processor.py:156} INFO - Started process (PID=319) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:39:25.568+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:39:25.569+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:39:25.569+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:39:25.574+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:39:25.589+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:39:25.589+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:39:25.600+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:39:25.600+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:39:25.610+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.045 seconds
+[2025-04-17T11:39:55.729+0000] {processor.py:156} INFO - Started process (PID=348) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:39:55.731+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:39:55.731+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:39:55.731+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:39:55.737+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:39:55.752+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:39:55.752+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:39:55.763+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:39:55.763+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:39:55.772+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.045 seconds
+[2025-04-17T11:40:25.934+0000] {processor.py:156} INFO - Started process (PID=370) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:40:25.935+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:40:25.935+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:40:25.935+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:40:25.942+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:40:25.961+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:40:25.961+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:40:25.974+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:40:25.974+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:40:25.984+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.053 seconds
+[2025-04-17T11:40:56.207+0000] {processor.py:156} INFO - Started process (PID=399) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:40:56.208+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:40:56.209+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:40:56.208+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:40:56.215+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:40:56.235+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:40:56.235+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:40:56.249+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:40:56.249+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:40:56.260+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.056 seconds
+[2025-04-17T11:41:26.392+0000] {processor.py:156} INFO - Started process (PID=428) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:41:26.394+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:41:26.395+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:41:26.395+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:41:26.401+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:41:26.418+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:41:26.418+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:41:26.429+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:41:26.429+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:41:26.442+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.052 seconds
+[2025-04-17T11:41:56.533+0000] {processor.py:156} INFO - Started process (PID=457) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:41:56.534+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:41:56.534+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:41:56.534+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:41:56.540+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:41:56.555+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:41:56.555+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:41:56.566+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:41:56.565+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:41:56.576+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.045 seconds
+[2025-04-17T11:42:30.249+0000] {processor.py:156} INFO - Started process (PID=486) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:42:30.251+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:42:30.251+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:42:30.251+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:42:30.257+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:42:30.274+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:42:30.274+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:42:30.286+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:42:30.286+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:42:30.296+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.048 seconds
+[2025-04-17T11:43:00.397+0000] {processor.py:156} INFO - Started process (PID=515) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:43:00.399+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:43:00.399+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:43:00.399+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:43:00.405+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:43:00.420+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:43:00.420+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:43:00.431+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:43:00.431+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:43:00.441+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.046 seconds
+[2025-04-17T11:43:30.512+0000] {processor.py:156} INFO - Started process (PID=544) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:43:30.513+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:43:30.513+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:43:30.513+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:43:30.519+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:43:30.539+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:43:30.539+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:43:30.552+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:43:30.552+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:43:30.564+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.055 seconds
+[2025-04-17T11:44:01.143+0000] {processor.py:156} INFO - Started process (PID=573) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:44:01.143+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:44:01.143+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:44:01.143+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:44:01.149+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:44:01.168+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:44:01.168+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:44:01.179+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:44:01.179+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:44:01.189+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.048 seconds
+[2025-04-17T11:44:31.301+0000] {processor.py:156} INFO - Started process (PID=602) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:44:31.303+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:44:31.303+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:44:31.303+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:44:31.309+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:44:31.326+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:44:31.326+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:44:31.337+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:44:31.337+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:44:31.346+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.047 seconds
+[2025-04-17T11:45:01.448+0000] {processor.py:156} INFO - Started process (PID=631) to work on /opt/airflow/dags/Download_model.py
+[2025-04-17T11:45:01.450+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Download_model.py for tasks to queue
+[2025-04-17T11:45:01.450+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:45:01.450+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:45:01.456+0000] {processor.py:809} INFO - DAG(s) dict_keys(['model_downloader_dag']) retrieved from /opt/airflow/dags/Download_model.py
+[2025-04-17T11:45:01.473+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:45:01.473+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T11:45:01.485+0000] {logging_mixin.py:149} INFO - [2025-04-17T11:45:01.484+0000] {dag.py:3486} INFO - Setting next_dagrun for model_downloader_dag to None, run_after=None
+[2025-04-17T11:45:01.495+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Download_model.py took 0.048 seconds
