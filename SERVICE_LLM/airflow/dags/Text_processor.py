@@ -30,11 +30,11 @@ default_args = {
 
 def clean_text(text):
     """
-    Realiza limpieza básica del texto:
-    - Convierte a minúsculas
-    - Elimina caracteres especiales
-    - Normaliza caracteres unicode
-    - Elimina espacios extra
+        Performs basic text cleaning:
+        - Converts to lowercase
+        - Removes special characters
+        - Normalizes Unicode characters
+        - Removes extra spaces
     """
     if not text:
         return ""

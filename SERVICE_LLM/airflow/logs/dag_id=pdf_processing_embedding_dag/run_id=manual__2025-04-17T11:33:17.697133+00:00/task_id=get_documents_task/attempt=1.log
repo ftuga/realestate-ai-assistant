@@ -1,0 +1,104 @@
+[2025-04-17T11:33:20.171+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pdf_processing_embedding_dag.get_documents_task manual__2025-04-17T11:33:17.697133+00:00 [queued]>
+[2025-04-17T11:33:20.176+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pdf_processing_embedding_dag.get_documents_task manual__2025-04-17T11:33:17.697133+00:00 [queued]>
+[2025-04-17T11:33:20.176+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2025-04-17T11:33:20.182+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): get_documents_task> on 2025-04-17 11:33:17.697133+00:00
+[2025-04-17T11:33:20.185+0000] {standard_task_runner.py:57} INFO - Started process 423 to run task
+[2025-04-17T11:33:20.187+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'pdf_processing_embedding_dag', 'get_documents_task', 'manual__2025-04-17T11:33:17.697133+00:00', '--job-id', '27', '--raw', '--subdir', 'DAGS_FOLDER/Text_processor.py', '--cfg-path', '/tmp/tmp6tt9ljhz']
+[2025-04-17T11:33:20.189+0000] {standard_task_runner.py:85} INFO - Job 27: Subtask get_documents_task
+[2025-04-17T11:33:20.215+0000] {task_command.py:410} INFO - Running <TaskInstance: pdf_processing_embedding_dag.get_documents_task manual__2025-04-17T11:33:17.697133+00:00 [running]> on host 4631a4c3095e
+[2025-04-17T11:33:20.251+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='pdf_processing_embedding_dag' AIRFLOW_CTX_TASK_ID='get_documents_task' AIRFLOW_CTX_EXECUTION_DATE='2025-04-17T11:33:17.697133+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-04-17T11:33:17.697133+00:00'
+[2025-04-17T11:33:20.252+0000] {logging_mixin.py:149} INFO - Escaneando directorio: /opt/***/data
+[2025-04-17T11:33:20.252+0000] {crypto.py:83} WARNING - empty cryptography key - values will not be stored encrypted.
+[2025-04-17T11:33:20.252+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:33:20.259+0000] {sql.py:375} INFO - Running statement: 
+        SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '***_db'
+        , parameters: None
+[2025-04-17T11:33:20.259+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T11:33:20.260+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:33:20.262+0000] {sql.py:375} INFO - Running statement: USE ***_db;, parameters: None
+[2025-04-17T11:33:20.262+0000] {sql.py:384} INFO - Rows affected: 0
+[2025-04-17T11:33:20.262+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:33:20.264+0000] {sql.py:375} INFO - Running statement: 
+        SELECT COUNT(*)
+        FROM information_schema.tables
+        WHERE table_schema = '***_db'
+        AND table_name = 'documents';
+        , parameters: None
+[2025-04-17T11:33:20.265+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T11:33:20.265+0000] {logging_mixin.py:149} INFO - La tabla 'documents' ya existe.
+[2025-04-17T11:33:20.265+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:33:20.267+0000] {sql.py:375} INFO - Running statement: 
+                SELECT COUNT(*)
+                FROM information_schema.columns
+                WHERE table_schema = '***_db'
+                AND table_name = 'documents'
+                AND column_name = 'file_path';
+                , parameters: None
+[2025-04-17T11:33:20.268+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T11:33:20.269+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:33:20.272+0000] {sql.py:375} INFO - Running statement: 
+                SELECT COUNT(*)
+                FROM information_schema.columns
+                WHERE table_schema = '***_db'
+                AND table_name = 'documents'
+                AND column_name = 'page_count';
+                , parameters: None
+[2025-04-17T11:33:20.273+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T11:33:20.273+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:33:20.276+0000] {sql.py:375} INFO - Running statement: 
+                SELECT COUNT(*)
+                FROM information_schema.columns
+                WHERE table_schema = '***_db'
+                AND table_name = 'documents'
+                AND column_name = 'file_hash';
+                , parameters: None
+[2025-04-17T11:33:20.276+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T11:33:20.277+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:33:20.279+0000] {sql.py:375} INFO - Running statement: 
+                SELECT COUNT(*)
+                FROM information_schema.columns
+                WHERE table_schema = '***_db'
+                AND table_name = 'documents'
+                AND column_name = 'last_updated';
+                , parameters: None
+[2025-04-17T11:33:20.279+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T11:33:20.279+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:33:20.281+0000] {sql.py:375} INFO - Running statement: 
+            SELECT COUNT(*)
+            FROM information_schema.statistics
+            WHERE table_schema = '***_db'
+            AND table_name = 'documents'
+            AND index_name = 'idx_title';
+            , parameters: None
+[2025-04-17T11:33:20.282+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T11:33:20.283+0000] {logging_mixin.py:149} INFO - Encontrados 3 archivos PDF
+[2025-04-17T11:33:20.283+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:33:20.285+0000] {sql.py:375} INFO - Running statement: 
+        SELECT id, file_hash FROM documents 
+        WHERE title = %s
+        , parameters: ['BAYFRONT RESIDENCES.pdf']
+[2025-04-17T11:33:20.285+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T11:33:20.285+0000] {logging_mixin.py:149} INFO - El archivo BAYFRONT RESIDENCES.pdf no ha cambiado desde la última vez (hash: 3eb5997b9b454328d216e965738a61af)
+[2025-04-17T11:33:20.286+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:33:20.288+0000] {sql.py:375} INFO - Running statement: 
+        SELECT id, file_hash FROM documents 
+        WHERE title = %s
+        , parameters: ['UNA CLUB.pdf']
+[2025-04-17T11:33:20.288+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T11:33:20.288+0000] {logging_mixin.py:149} INFO - El archivo UNA CLUB.pdf no ha cambiado desde la última vez (hash: d1236224608c576bb014d246111c1b97)
+[2025-04-17T11:33:20.289+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:33:20.291+0000] {sql.py:375} INFO - Running statement: 
+        SELECT id, file_hash FROM documents 
+        WHERE title = %s
+        , parameters: ['BRICKELL HOME LUXURY.pdf']
+[2025-04-17T11:33:20.291+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T11:33:20.291+0000] {logging_mixin.py:149} INFO - El archivo BRICKELL HOME LUXURY.pdf no ha cambiado desde la última vez (hash: a34968a4639f717b06b94acad53c1574)
+[2025-04-17T11:33:20.291+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:33:20.295+0000] {warnings.py:109} WARNING - /home/***/.local/lib/python3.9/site-packages/***/providers/common/sql/hooks/sql.py:201: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  return psql.read_sql(sql, con=conn, params=parameters, **kwargs)
+
+[2025-04-17T11:33:20.297+0000] {logging_mixin.py:149} INFO - No hay nuevos documentos para procesar
+[2025-04-17T11:33:20.298+0000] {python.py:183} INFO - Done. Returned value was: []
+[2025-04-17T11:33:20.310+0000] {taskinstance.py:1368} INFO - Marking task as SUCCESS. dag_id=pdf_processing_embedding_dag, task_id=get_documents_task, execution_date=20250417T113317, start_date=20250417T113320, end_date=20250417T113320
+[2025-04-17T11:33:20.318+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-04-17T11:33:20.331+0000] {taskinstance.py:2674} INFO - 1 downstream tasks scheduled from follow-on schedule check

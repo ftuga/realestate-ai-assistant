@@ -1,0 +1,14 @@
+[2025-04-17T11:32:46.396+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pdf_processing_embedding_dag.process_documents_task manual__2025-04-17T11:32:42.948473+00:00 [queued]>
+[2025-04-17T11:32:46.400+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pdf_processing_embedding_dag.process_documents_task manual__2025-04-17T11:32:42.948473+00:00 [queued]>
+[2025-04-17T11:32:46.400+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2025-04-17T11:32:46.406+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): process_documents_task> on 2025-04-17 11:32:42.948473+00:00
+[2025-04-17T11:32:46.408+0000] {standard_task_runner.py:57} INFO - Started process 404 to run task
+[2025-04-17T11:32:46.410+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'pdf_processing_embedding_dag', 'process_documents_task', 'manual__2025-04-17T11:32:42.948473+00:00', '--job-id', '23', '--raw', '--subdir', 'DAGS_FOLDER/Text_processor.py', '--cfg-path', '/tmp/tmp25uzn4d3']
+[2025-04-17T11:32:46.412+0000] {standard_task_runner.py:85} INFO - Job 23: Subtask process_documents_task
+[2025-04-17T11:32:46.436+0000] {task_command.py:410} INFO - Running <TaskInstance: pdf_processing_embedding_dag.process_documents_task manual__2025-04-17T11:32:42.948473+00:00 [running]> on host 4631a4c3095e
+[2025-04-17T11:32:46.471+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='pdf_processing_embedding_dag' AIRFLOW_CTX_TASK_ID='process_documents_task' AIRFLOW_CTX_EXECUTION_DATE='2025-04-17T11:32:42.948473+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-04-17T11:32:42.948473+00:00'
+[2025-04-17T11:32:46.477+0000] {logging_mixin.py:149} INFO - No hay documentos para procesar
+[2025-04-17T11:32:46.477+0000] {python.py:183} INFO - Done. Returned value was: []
+[2025-04-17T11:32:46.488+0000] {taskinstance.py:1368} INFO - Marking task as SUCCESS. dag_id=pdf_processing_embedding_dag, task_id=process_documents_task, execution_date=20250417T113242, start_date=20250417T113246, end_date=20250417T113246
+[2025-04-17T11:32:46.501+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-04-17T11:32:46.513+0000] {taskinstance.py:2674} INFO - 1 downstream tasks scheduled from follow-on schedule check

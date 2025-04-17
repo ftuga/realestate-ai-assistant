@@ -1,0 +1,85 @@
+[2025-04-17T11:31:00.115+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pdf_processing_embedding_dag.clean_duplicates_task manual__2025-04-17T11:30:58.953488+00:00 [queued]>
+[2025-04-17T11:31:00.119+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pdf_processing_embedding_dag.clean_duplicates_task manual__2025-04-17T11:30:58.953488+00:00 [queued]>
+[2025-04-17T11:31:00.119+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2025-04-17T11:31:00.125+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): clean_duplicates_task> on 2025-04-17 11:30:58.953488+00:00
+[2025-04-17T11:31:00.128+0000] {standard_task_runner.py:57} INFO - Started process 362 to run task
+[2025-04-17T11:31:00.130+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'pdf_processing_embedding_dag', 'clean_duplicates_task', 'manual__2025-04-17T11:30:58.953488+00:00', '--job-id', '16', '--raw', '--subdir', 'DAGS_FOLDER/Text_processor.py', '--cfg-path', '/tmp/tmpihbrpu_0']
+[2025-04-17T11:31:00.132+0000] {standard_task_runner.py:85} INFO - Job 16: Subtask clean_duplicates_task
+[2025-04-17T11:31:00.158+0000] {task_command.py:410} INFO - Running <TaskInstance: pdf_processing_embedding_dag.clean_duplicates_task manual__2025-04-17T11:30:58.953488+00:00 [running]> on host 4631a4c3095e
+[2025-04-17T11:31:00.200+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='pdf_processing_embedding_dag' AIRFLOW_CTX_TASK_ID='clean_duplicates_task' AIRFLOW_CTX_EXECUTION_DATE='2025-04-17T11:30:58.953488+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-04-17T11:30:58.953488+00:00'
+[2025-04-17T11:31:00.201+0000] {crypto.py:83} WARNING - empty cryptography key - values will not be stored encrypted.
+[2025-04-17T11:31:00.202+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:31:00.209+0000] {sql.py:375} INFO - Running statement: 
+        SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '***_db'
+        , parameters: None
+[2025-04-17T11:31:00.210+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T11:31:00.210+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:31:00.213+0000] {sql.py:375} INFO - Running statement: USE ***_db;, parameters: None
+[2025-04-17T11:31:00.213+0000] {sql.py:384} INFO - Rows affected: 0
+[2025-04-17T11:31:00.213+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:31:00.215+0000] {sql.py:375} INFO - Running statement: 
+        SELECT COUNT(*)
+        FROM information_schema.tables
+        WHERE table_schema = '***_db'
+        AND table_name = 'documents';
+        , parameters: None
+[2025-04-17T11:31:00.216+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T11:31:00.216+0000] {logging_mixin.py:149} INFO - La tabla 'documents' ya existe.
+[2025-04-17T11:31:00.217+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:31:00.219+0000] {sql.py:375} INFO - Running statement: 
+                SELECT COUNT(*)
+                FROM information_schema.columns
+                WHERE table_schema = '***_db'
+                AND table_name = 'documents'
+                AND column_name = 'file_path';
+                , parameters: None
+[2025-04-17T11:31:00.219+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T11:31:00.220+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:31:00.223+0000] {sql.py:375} INFO - Running statement: 
+                SELECT COUNT(*)
+                FROM information_schema.columns
+                WHERE table_schema = '***_db'
+                AND table_name = 'documents'
+                AND column_name = 'page_count';
+                , parameters: None
+[2025-04-17T11:31:00.223+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T11:31:00.224+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:31:00.226+0000] {sql.py:375} INFO - Running statement: 
+                SELECT COUNT(*)
+                FROM information_schema.columns
+                WHERE table_schema = '***_db'
+                AND table_name = 'documents'
+                AND column_name = 'file_hash';
+                , parameters: None
+[2025-04-17T11:31:00.227+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T11:31:00.227+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:31:00.229+0000] {sql.py:375} INFO - Running statement: 
+                SELECT COUNT(*)
+                FROM information_schema.columns
+                WHERE table_schema = '***_db'
+                AND table_name = 'documents'
+                AND column_name = 'last_updated';
+                , parameters: None
+[2025-04-17T11:31:00.230+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T11:31:00.230+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:31:00.232+0000] {sql.py:375} INFO - Running statement: 
+            SELECT COUNT(*)
+            FROM information_schema.statistics
+            WHERE table_schema = '***_db'
+            AND table_name = 'documents'
+            AND index_name = 'idx_title';
+            , parameters: None
+[2025-04-17T11:31:00.232+0000] {sql.py:384} INFO - Rows affected: 1
+[2025-04-17T11:31:00.233+0000] {base.py:73} INFO - Using connection ID 'mysql_default' for task execution.
+[2025-04-17T11:31:00.235+0000] {sql.py:375} INFO - Running statement: 
+        SELECT title, COUNT(*) as count, GROUP_CONCAT(id ORDER BY id) as ids
+        FROM documents
+        GROUP BY title
+        HAVING COUNT(*) > 1
+        , parameters: None
+[2025-04-17T11:31:00.235+0000] {sql.py:384} INFO - Rows affected: 0
+[2025-04-17T11:31:00.235+0000] {logging_mixin.py:149} INFO - No se encontraron documentos duplicados
+[2025-04-17T11:31:00.235+0000] {python.py:183} INFO - Done. Returned value was: None
+[2025-04-17T11:31:00.241+0000] {taskinstance.py:1368} INFO - Marking task as SUCCESS. dag_id=pdf_processing_embedding_dag, task_id=clean_duplicates_task, execution_date=20250417T113058, start_date=20250417T113100, end_date=20250417T113100
+[2025-04-17T11:31:00.261+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-04-17T11:31:00.276+0000] {taskinstance.py:2674} INFO - 1 downstream tasks scheduled from follow-on schedule check

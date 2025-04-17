@@ -1,0 +1,14 @@
+[2025-04-17T11:33:23.395+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: pdf_processing_embedding_dag.save_to_minio_task manual__2025-04-17T11:33:17.697133+00:00 [queued]>
+[2025-04-17T11:33:23.399+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: pdf_processing_embedding_dag.save_to_minio_task manual__2025-04-17T11:33:17.697133+00:00 [queued]>
+[2025-04-17T11:33:23.399+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 2
+[2025-04-17T11:33:23.406+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): save_to_minio_task> on 2025-04-17 11:33:17.697133+00:00
+[2025-04-17T11:33:23.408+0000] {standard_task_runner.py:57} INFO - Started process 439 to run task
+[2025-04-17T11:33:23.411+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'pdf_processing_embedding_dag', 'save_to_minio_task', 'manual__2025-04-17T11:33:17.697133+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/Text_processor.py', '--cfg-path', '/tmp/tmpehupx8k8']
+[2025-04-17T11:33:23.413+0000] {standard_task_runner.py:85} INFO - Job 30: Subtask save_to_minio_task
+[2025-04-17T11:33:23.441+0000] {task_command.py:410} INFO - Running <TaskInstance: pdf_processing_embedding_dag.save_to_minio_task manual__2025-04-17T11:33:17.697133+00:00 [running]> on host 4631a4c3095e
+[2025-04-17T11:33:23.482+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='pdf_processing_embedding_dag' AIRFLOW_CTX_TASK_ID='save_to_minio_task' AIRFLOW_CTX_EXECUTION_DATE='2025-04-17T11:33:17.697133+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-04-17T11:33:17.697133+00:00'
+[2025-04-17T11:33:23.488+0000] {logging_mixin.py:149} INFO - No hay documentos con embeddings para guardar
+[2025-04-17T11:33:23.488+0000] {python.py:183} INFO - Done. Returned value was: None
+[2025-04-17T11:33:23.493+0000] {taskinstance.py:1368} INFO - Marking task as SUCCESS. dag_id=pdf_processing_embedding_dag, task_id=save_to_minio_task, execution_date=20250417T113317, start_date=20250417T113323, end_date=20250417T113323
+[2025-04-17T11:33:23.502+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-04-17T11:33:23.510+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check
