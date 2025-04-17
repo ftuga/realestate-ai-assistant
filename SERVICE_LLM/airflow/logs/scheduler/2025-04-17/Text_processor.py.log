@@ -7648,3 +7648,45 @@
 [2025-04-17T22:29:37.494+0000] {logging_mixin.py:149} INFO - [2025-04-17T22:29:37.494+0000] {dag.py:2726} INFO - Sync 1 DAGs
 [2025-04-17T22:29:37.505+0000] {logging_mixin.py:149} INFO - [2025-04-17T22:29:37.505+0000] {dag.py:3486} INFO - Setting next_dagrun for pdf_processing_embedding_dag to None, run_after=None
 [2025-04-17T22:29:37.516+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Text_processor.py took 0.564 seconds
+[2025-04-17T22:30:08.205+0000] {processor.py:156} INFO - Started process (PID=667) to work on /opt/airflow/dags/Text_processor.py
+[2025-04-17T22:30:08.207+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Text_processor.py for tasks to queue
+[2025-04-17T22:30:08.207+0000] {logging_mixin.py:149} INFO - [2025-04-17T22:30:08.207+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Text_processor.py
+[2025-04-17T22:30:08.654+0000] {processor.py:809} INFO - DAG(s) dict_keys(['pdf_processing_embedding_dag']) retrieved from /opt/airflow/dags/Text_processor.py
+[2025-04-17T22:30:08.670+0000] {logging_mixin.py:149} INFO - [2025-04-17T22:30:08.669+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T22:30:08.681+0000] {logging_mixin.py:149} INFO - [2025-04-17T22:30:08.681+0000] {dag.py:3486} INFO - Setting next_dagrun for pdf_processing_embedding_dag to None, run_after=None
+[2025-04-17T22:30:08.693+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Text_processor.py took 0.489 seconds
+[2025-04-17T22:30:41.378+0000] {processor.py:156} INFO - Started process (PID=696) to work on /opt/airflow/dags/Text_processor.py
+[2025-04-17T22:30:41.379+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Text_processor.py for tasks to queue
+[2025-04-17T22:30:41.379+0000] {logging_mixin.py:149} INFO - [2025-04-17T22:30:41.379+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Text_processor.py
+[2025-04-17T22:30:41.871+0000] {processor.py:809} INFO - DAG(s) dict_keys(['pdf_processing_embedding_dag']) retrieved from /opt/airflow/dags/Text_processor.py
+[2025-04-17T22:30:41.888+0000] {logging_mixin.py:149} INFO - [2025-04-17T22:30:41.888+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T22:30:41.902+0000] {logging_mixin.py:149} INFO - [2025-04-17T22:30:41.902+0000] {dag.py:3486} INFO - Setting next_dagrun for pdf_processing_embedding_dag to None, run_after=None
+[2025-04-17T22:30:41.912+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Text_processor.py took 0.538 seconds
+[2025-04-17T22:31:12.013+0000] {processor.py:156} INFO - Started process (PID=725) to work on /opt/airflow/dags/Text_processor.py
+[2025-04-17T22:31:12.014+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Text_processor.py for tasks to queue
+[2025-04-17T22:31:12.014+0000] {logging_mixin.py:149} INFO - [2025-04-17T22:31:12.014+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Text_processor.py
+[2025-04-17T22:31:12.489+0000] {processor.py:809} INFO - DAG(s) dict_keys(['pdf_processing_embedding_dag']) retrieved from /opt/airflow/dags/Text_processor.py
+[2025-04-17T22:31:12.503+0000] {logging_mixin.py:149} INFO - [2025-04-17T22:31:12.502+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T22:31:12.514+0000] {logging_mixin.py:149} INFO - [2025-04-17T22:31:12.514+0000] {dag.py:3486} INFO - Setting next_dagrun for pdf_processing_embedding_dag to None, run_after=None
+[2025-04-17T22:31:12.524+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Text_processor.py took 0.513 seconds
+[2025-04-17T22:31:43.194+0000] {processor.py:156} INFO - Started process (PID=754) to work on /opt/airflow/dags/Text_processor.py
+[2025-04-17T22:31:43.197+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Text_processor.py for tasks to queue
+[2025-04-17T22:31:43.197+0000] {logging_mixin.py:149} INFO - [2025-04-17T22:31:43.197+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Text_processor.py
+[2025-04-17T22:31:43.713+0000] {processor.py:809} INFO - DAG(s) dict_keys(['pdf_processing_embedding_dag']) retrieved from /opt/airflow/dags/Text_processor.py
+[2025-04-17T22:31:43.728+0000] {logging_mixin.py:149} INFO - [2025-04-17T22:31:43.727+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T22:31:43.738+0000] {logging_mixin.py:149} INFO - [2025-04-17T22:31:43.738+0000] {dag.py:3486} INFO - Setting next_dagrun for pdf_processing_embedding_dag to None, run_after=None
+[2025-04-17T22:31:43.748+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Text_processor.py took 0.557 seconds
+[2025-04-17T22:32:13.908+0000] {processor.py:156} INFO - Started process (PID=783) to work on /opt/airflow/dags/Text_processor.py
+[2025-04-17T22:32:13.909+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Text_processor.py for tasks to queue
+[2025-04-17T22:32:13.909+0000] {logging_mixin.py:149} INFO - [2025-04-17T22:32:13.909+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Text_processor.py
+[2025-04-17T22:32:14.455+0000] {processor.py:809} INFO - DAG(s) dict_keys(['pdf_processing_embedding_dag']) retrieved from /opt/airflow/dags/Text_processor.py
+[2025-04-17T22:32:14.473+0000] {logging_mixin.py:149} INFO - [2025-04-17T22:32:14.472+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T22:32:14.490+0000] {logging_mixin.py:149} INFO - [2025-04-17T22:32:14.489+0000] {dag.py:3486} INFO - Setting next_dagrun for pdf_processing_embedding_dag to None, run_after=None
+[2025-04-17T22:32:14.502+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Text_processor.py took 0.597 seconds
+[2025-04-17T22:32:45.197+0000] {processor.py:156} INFO - Started process (PID=813) to work on /opt/airflow/dags/Text_processor.py
+[2025-04-17T22:32:45.198+0000] {processor.py:799} INFO - Processing file /opt/airflow/dags/Text_processor.py for tasks to queue
+[2025-04-17T22:32:45.199+0000] {logging_mixin.py:149} INFO - [2025-04-17T22:32:45.199+0000] {dagbag.py:541} INFO - Filling up the DagBag from /opt/airflow/dags/Text_processor.py
+[2025-04-17T22:32:45.741+0000] {processor.py:809} INFO - DAG(s) dict_keys(['pdf_processing_embedding_dag']) retrieved from /opt/airflow/dags/Text_processor.py
+[2025-04-17T22:32:45.758+0000] {logging_mixin.py:149} INFO - [2025-04-17T22:32:45.758+0000] {dag.py:2726} INFO - Sync 1 DAGs
+[2025-04-17T22:32:45.772+0000] {logging_mixin.py:149} INFO - [2025-04-17T22:32:45.772+0000] {dag.py:3486} INFO - Setting next_dagrun for pdf_processing_embedding_dag to None, run_after=None
+[2025-04-17T22:32:45.785+0000] {processor.py:178} INFO - Processing /opt/airflow/dags/Text_processor.py took 0.590 seconds

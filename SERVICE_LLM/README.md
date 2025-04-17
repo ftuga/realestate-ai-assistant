@@ -140,7 +140,8 @@ The chat interface provides an advanced conversational experience for interactin
    - Supports multiple document types (primarily PDFs)
    - Real-time interaction with document knowledge base
 
-![alt text](screenshots/image-6.png)
+![alt text](screenshots/image-6-index-html.png)
+
 
 ## Technologies and Dependencies
 
