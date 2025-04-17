@@ -1,0 +1,35 @@
+[2025-04-17T04:49:59.742+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_downloader_dag.download_embedding_model manual__2025-04-17T04:49:57.135053+00:00 [queued]>
+[2025-04-17T04:49:59.747+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_downloader_dag.download_embedding_model manual__2025-04-17T04:49:57.135053+00:00 [queued]>
+[2025-04-17T04:49:59.748+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 3
+[2025-04-17T04:49:59.754+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): download_embedding_model> on 2025-04-17 04:49:57.135053+00:00
+[2025-04-17T04:49:59.757+0000] {standard_task_runner.py:57} INFO - Started process 194 to run task
+[2025-04-17T04:49:59.759+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_downloader_dag', 'download_embedding_model', 'manual__2025-04-17T04:49:57.135053+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/Download_model.py', '--cfg-path', '/tmp/tmpsdg7itf_']
+[2025-04-17T04:49:59.760+0000] {standard_task_runner.py:85} INFO - Job 5: Subtask download_embedding_model
+[2025-04-17T04:49:59.792+0000] {task_command.py:410} INFO - Running <TaskInstance: model_downloader_dag.download_embedding_model manual__2025-04-17T04:49:57.135053+00:00 [running]> on host 6a2e1eff80f4
+[2025-04-17T04:49:59.834+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_downloader_dag' AIRFLOW_CTX_TASK_ID='download_embedding_model' AIRFLOW_CTX_EXECUTION_DATE='2025-04-17T04:49:57.135053+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-04-17T04:49:57.135053+00:00'
+[2025-04-17T04:49:59.834+0000] {Download_model.py:121} INFO - Checking availability of embedding model: nomic-embed-text
+[2025-04-17T04:49:59.840+0000] {Download_model.py:133} WARNING - Embedding model is not available: 404
+[2025-04-17T04:49:59.840+0000] {Download_model.py:134} INFO - Executing command to obtain model: nomic-embed-text
+[2025-04-17T04:49:59.840+0000] {Download_model.py:136} INFO - Download of embedding model nomic-embed-text completed
+[2025-04-17T04:49:59.840+0000] {Download_model.py:151} ERROR - Error checking/downloading embedding model: Expecting value: line 1 column 1 (char 0)
+[2025-04-17T04:49:59.840+0000] {taskinstance.py:1847} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/Download_model.py", line 139, in download_embedding_model
+    versions = json.load(f)
+  File "/usr/local/lib/python3.9/json/__init__.py", line 293, in load
+    return loads(fp.read(),
+  File "/usr/local/lib/python3.9/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/usr/local/lib/python3.9/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/local/lib/python3.9/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+[2025-04-17T04:49:59.845+0000] {taskinstance.py:1368} INFO - Marking task as UP_FOR_RETRY. dag_id=model_downloader_dag, task_id=download_embedding_model, execution_date=20250417T044957, start_date=20250417T044959, end_date=20250417T044959
+[2025-04-17T04:49:59.851+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 5 for task download_embedding_model (Expecting value: line 1 column 1 (char 0); 194)
+[2025-04-17T04:49:59.891+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 1
+[2025-04-17T04:49:59.899+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,55 @@
+[2025-04-17T03:28:17.576+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: zephyr_real_estate_model_dag.fine_tune_model manual__2025-04-17T03:28:11.131107+00:00 [queued]>
+[2025-04-17T03:28:17.580+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: zephyr_real_estate_model_dag.fine_tune_model manual__2025-04-17T03:28:11.131107+00:00 [queued]>
+[2025-04-17T03:28:17.580+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 4
+[2025-04-17T03:28:17.586+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): fine_tune_model> on 2025-04-17 03:28:11.131107+00:00
+[2025-04-17T03:28:17.589+0000] {standard_task_runner.py:57} INFO - Started process 243 to run task
+[2025-04-17T03:28:17.591+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'zephyr_real_estate_model_dag', 'fine_tune_model', 'manual__2025-04-17T03:28:11.131107+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/Download_model.py', '--cfg-path', '/tmp/tmpgqu6hieh']
+[2025-04-17T03:28:17.592+0000] {standard_task_runner.py:85} INFO - Job 9: Subtask fine_tune_model
+[2025-04-17T03:28:17.618+0000] {task_command.py:410} INFO - Running <TaskInstance: zephyr_real_estate_model_dag.fine_tune_model manual__2025-04-17T03:28:11.131107+00:00 [running]> on host 11c3ec6fad98
+[2025-04-17T03:28:17.658+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='zephyr_real_estate_model_dag' AIRFLOW_CTX_TASK_ID='fine_tune_model' AIRFLOW_CTX_EXECUTION_DATE='2025-04-17T03:28:11.131107+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-04-17T03:28:11.131107+00:00'
+[2025-04-17T03:28:17.659+0000] {Download_model.py:90} INFO - PyTorch patched for compatibility
+[2025-04-17T03:28:17.749+0000] {warnings.py:109} WARNING - /home/***/.local/lib/python3.9/site-packages/transformers/utils/hub.py:105: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+
+[2025-04-17T03:28:18.895+0000] {warnings.py:109} WARNING - /home/***/.local/lib/python3.9/site-packages/bitsandbytes/cextension.py:34: UserWarning: The installed version of bitsandbytes was compiled without GPU support. 8-bit optimizers, 8-bit multiplication, and GPU quantization are unavailable.
+  warn("The installed version of bitsandbytes was compiled without GPU support. "
+
+[2025-04-17T03:28:18.896+0000] {logging_mixin.py:149} INFO - /home/***/.local/lib/python3.9/site-packages/bitsandbytes/libbitsandbytes_cpu.so: undefined symbol: cadam32bit_grad_fp32
+[2025-04-17T03:28:19.090+0000] {Download_model.py:206} INFO - Loading tokenizer...
+[2025-04-17T03:28:19.449+0000] {logging_mixin.py:149} WARNING - Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+[2025-04-17T03:28:19.449+0000] {file_download.py:1670} WARNING - Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+[2025-04-17T03:28:25.919+0000] {Download_model.py:452} ERROR - Error in LoRA fine-tuning: Using `bitsandbytes` 8-bit quantization requires the latest version of bitsandbytes: `pip install -U bitsandbytes`
+[2025-04-17T03:28:25.921+0000] {Download_model.py:453} ERROR - Traceback (most recent call last):
+  File "/opt/***/dags/Download_model.py", line 220, in fine_tune_model
+    model = AutoModelForCausalLM.from_pretrained(
+  File "/home/***/.local/lib/python3.9/site-packages/transformers/models/auto/auto_factory.py", line 571, in from_pretrained
+    return model_class.from_pretrained(
+  File "/home/***/.local/lib/python3.9/site-packages/transformers/modeling_utils.py", line 279, in _wrapper
+    return func(*args, **kwargs)
+  File "/home/***/.local/lib/python3.9/site-packages/transformers/modeling_utils.py", line 4228, in from_pretrained
+    hf_quantizer.validate_environment(
+  File "/home/***/.local/lib/python3.9/site-packages/transformers/quantizers/quantizer_bnb_8bit.py", line 73, in validate_environment
+    raise ImportError(
+ImportError: Using `bitsandbytes` 8-bit quantization requires the latest version of bitsandbytes: `pip install -U bitsandbytes`
+
+[2025-04-17T03:28:25.922+0000] {taskinstance.py:1847} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/Download_model.py", line 220, in fine_tune_model
+    model = AutoModelForCausalLM.from_pretrained(
+  File "/home/airflow/.local/lib/python3.9/site-packages/transformers/models/auto/auto_factory.py", line 571, in from_pretrained
+    return model_class.from_pretrained(
+  File "/home/airflow/.local/lib/python3.9/site-packages/transformers/modeling_utils.py", line 279, in _wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/transformers/modeling_utils.py", line 4228, in from_pretrained
+    hf_quantizer.validate_environment(
+  File "/home/airflow/.local/lib/python3.9/site-packages/transformers/quantizers/quantizer_bnb_8bit.py", line 73, in validate_environment
+    raise ImportError(
+ImportError: Using `bitsandbytes` 8-bit quantization requires the latest version of bitsandbytes: `pip install -U bitsandbytes`
+[2025-04-17T03:28:25.926+0000] {taskinstance.py:1368} INFO - Marking task as UP_FOR_RETRY. dag_id=zephyr_real_estate_model_dag, task_id=fine_tune_model, execution_date=20250417T032811, start_date=20250417T032817, end_date=20250417T032825
+[2025-04-17T03:28:25.933+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 9 for task fine_tune_model (Using `bitsandbytes` 8-bit quantization requires the latest version of bitsandbytes: `pip install -U bitsandbytes`; 243)
+[2025-04-17T03:28:25.966+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 1
+[2025-04-17T03:28:25.977+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

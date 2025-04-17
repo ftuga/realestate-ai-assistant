@@ -1,0 +1,20 @@
+[2025-04-17T03:41:27.425+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: zephyr_real_estate_model_dag.debug_environment manual__2025-04-17T03:41:25.363584+00:00 [queued]>
+[2025-04-17T03:41:27.429+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: zephyr_real_estate_model_dag.debug_environment manual__2025-04-17T03:41:25.363584+00:00 [queued]>
+[2025-04-17T03:41:27.429+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 4
+[2025-04-17T03:41:27.434+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): debug_environment> on 2025-04-17 03:41:25.363584+00:00
+[2025-04-17T03:41:27.437+0000] {standard_task_runner.py:57} INFO - Started process 202 to run task
+[2025-04-17T03:41:27.440+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'zephyr_real_estate_model_dag', 'debug_environment', 'manual__2025-04-17T03:41:25.363584+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/Download_model.py', '--cfg-path', '/tmp/tmpq8_l010l']
+[2025-04-17T03:41:27.440+0000] {standard_task_runner.py:85} INFO - Job 3: Subtask debug_environment
+[2025-04-17T03:41:27.471+0000] {task_command.py:410} INFO - Running <TaskInstance: zephyr_real_estate_model_dag.debug_environment manual__2025-04-17T03:41:25.363584+00:00 [running]> on host 8793e6621b44
+[2025-04-17T03:41:27.507+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='zephyr_real_estate_model_dag' AIRFLOW_CTX_TASK_ID='debug_environment' AIRFLOW_CTX_EXECUTION_DATE='2025-04-17T03:41:25.363584+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-04-17T03:41:25.363584+00:00'
+[2025-04-17T03:41:27.508+0000] {Download_model.py:31} INFO - Python version: 3.9.16 (main, Apr 12 2023, 06:58:15) 
+[GCC 10.2.1 20210110]
+[2025-04-17T03:41:27.508+0000] {Download_model.py:32} INFO - PyTorch version: 2.2.0+cu121
+[2025-04-17T03:41:27.508+0000] {Download_model.py:33} INFO - PyTorch path: /home/***/.local/lib/python3.9/site-packages/torch/__init__.py
+[2025-04-17T03:41:27.509+0000] {Download_model.py:37} INFO - Transformers version: 4.51.3
+[2025-04-17T03:41:27.509+0000] {Download_model.py:41} INFO - torch.compiler exists: True
+[2025-04-17T03:41:27.509+0000] {Download_model.py:42} INFO - CUDA available: False
+[2025-04-17T03:41:27.509+0000] {python.py:183} INFO - Done. Returned value was: None
+[2025-04-17T03:41:27.515+0000] {taskinstance.py:1368} INFO - Marking task as SUCCESS. dag_id=zephyr_real_estate_model_dag, task_id=debug_environment, execution_date=20250417T034125, start_date=20250417T034127, end_date=20250417T034127
+[2025-04-17T03:41:27.531+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-04-17T03:41:27.544+0000] {taskinstance.py:2674} INFO - 1 downstream tasks scheduled from follow-on schedule check

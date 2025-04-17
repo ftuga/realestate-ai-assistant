@@ -1,0 +1,56 @@
+[2025-04-17T04:14:37.599+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_downloader_dag.setup_environment scheduled__2025-04-06T00:00:00+00:00 [queued]>
+[2025-04-17T04:14:37.614+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_downloader_dag.setup_environment scheduled__2025-04-06T00:00:00+00:00 [queued]>
+[2025-04-17T04:14:37.615+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 3
+[2025-04-17T04:14:37.624+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): setup_environment> on 2025-04-06 00:00:00+00:00
+[2025-04-17T04:14:37.627+0000] {standard_task_runner.py:57} INFO - Started process 907 to run task
+[2025-04-17T04:14:37.630+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_downloader_dag', 'setup_environment', 'scheduled__2025-04-06T00:00:00+00:00', '--job-id', '21', '--raw', '--subdir', 'DAGS_FOLDER/Download_model.py', '--cfg-path', '/tmp/tmpiv6zfco9']
+[2025-04-17T04:14:37.631+0000] {standard_task_runner.py:85} INFO - Job 21: Subtask setup_environment
+[2025-04-17T04:14:37.668+0000] {task_command.py:410} INFO - Running <TaskInstance: model_downloader_dag.setup_environment scheduled__2025-04-06T00:00:00+00:00 [running]> on host 8793e6621b44
+[2025-04-17T04:14:37.720+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_downloader_dag' AIRFLOW_CTX_TASK_ID='setup_environment' AIRFLOW_CTX_EXECUTION_DATE='2025-04-06T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-06T00:00:00+00:00'
+[2025-04-17T04:14:37.721+0000] {Download_model.py:47} INFO - Environment setup completed
+[2025-04-17T04:14:37.722+0000] {python.py:183} INFO - Done. Returned value was: None
+[2025-04-17T04:14:37.731+0000] {taskinstance.py:1368} INFO - Marking task as SUCCESS. dag_id=model_downloader_dag, task_id=setup_environment, execution_date=20250406T000000, start_date=20250417T041437, end_date=20250417T041437
+[2025-04-17T04:14:37.766+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-04-17T04:14:37.780+0000] {taskinstance.py:2674} INFO - 2 downstream tasks scheduled from follow-on schedule check
+[2025-04-17T04:49:58.563+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_downloader_dag.setup_environment scheduled__2025-04-06T00:00:00+00:00 [queued]>
+[2025-04-17T04:49:58.568+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_downloader_dag.setup_environment scheduled__2025-04-06T00:00:00+00:00 [queued]>
+[2025-04-17T04:49:58.568+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 3
+[2025-04-17T04:49:58.576+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): setup_environment> on 2025-04-06 00:00:00+00:00
+[2025-04-17T04:49:58.579+0000] {standard_task_runner.py:57} INFO - Started process 189 to run task
+[2025-04-17T04:49:58.581+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_downloader_dag', 'setup_environment', 'scheduled__2025-04-06T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/Download_model.py', '--cfg-path', '/tmp/tmp3fmr4vjg']
+[2025-04-17T04:49:58.581+0000] {standard_task_runner.py:85} INFO - Job 4: Subtask setup_environment
+[2025-04-17T04:49:58.611+0000] {task_command.py:410} INFO - Running <TaskInstance: model_downloader_dag.setup_environment scheduled__2025-04-06T00:00:00+00:00 [running]> on host 6a2e1eff80f4
+[2025-04-17T04:49:58.648+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_downloader_dag' AIRFLOW_CTX_TASK_ID='setup_environment' AIRFLOW_CTX_EXECUTION_DATE='2025-04-06T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-06T00:00:00+00:00'
+[2025-04-17T04:49:58.649+0000] {Download_model.py:47} INFO - Environment setup completed
+[2025-04-17T04:49:58.649+0000] {python.py:183} INFO - Done. Returned value was: None
+[2025-04-17T04:49:58.654+0000] {taskinstance.py:1368} INFO - Marking task as SUCCESS. dag_id=model_downloader_dag, task_id=setup_environment, execution_date=20250406T000000, start_date=20250417T044958, end_date=20250417T044958
+[2025-04-17T04:49:58.672+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-04-17T04:49:58.682+0000] {taskinstance.py:2674} INFO - 2 downstream tasks scheduled from follow-on schedule check
+[2025-04-17T04:59:48.621+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_downloader_dag.setup_environment scheduled__2025-04-06T00:00:00+00:00 [queued]>
+[2025-04-17T04:59:48.625+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_downloader_dag.setup_environment scheduled__2025-04-06T00:00:00+00:00 [queued]>
+[2025-04-17T04:59:48.625+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 3
+[2025-04-17T04:59:48.631+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): setup_environment> on 2025-04-06 00:00:00+00:00
+[2025-04-17T04:59:48.633+0000] {standard_task_runner.py:57} INFO - Started process 332 to run task
+[2025-04-17T04:59:48.635+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_downloader_dag', 'setup_environment', 'scheduled__2025-04-06T00:00:00+00:00', '--job-id', '13', '--raw', '--subdir', 'DAGS_FOLDER/Download_model.py', '--cfg-path', '/tmp/tmpz3slig3p']
+[2025-04-17T04:59:48.635+0000] {standard_task_runner.py:85} INFO - Job 13: Subtask setup_environment
+[2025-04-17T04:59:48.661+0000] {task_command.py:410} INFO - Running <TaskInstance: model_downloader_dag.setup_environment scheduled__2025-04-06T00:00:00+00:00 [running]> on host 6a2e1eff80f4
+[2025-04-17T04:59:48.695+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_downloader_dag' AIRFLOW_CTX_TASK_ID='setup_environment' AIRFLOW_CTX_EXECUTION_DATE='2025-04-06T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-06T00:00:00+00:00'
+[2025-04-17T04:59:48.695+0000] {Download_model.py:47} INFO - Environment setup completed
+[2025-04-17T04:59:48.696+0000] {python.py:183} INFO - Done. Returned value was: None
+[2025-04-17T04:59:48.700+0000] {taskinstance.py:1368} INFO - Marking task as SUCCESS. dag_id=model_downloader_dag, task_id=setup_environment, execution_date=20250406T000000, start_date=20250417T045948, end_date=20250417T045948
+[2025-04-17T04:59:48.726+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-04-17T04:59:48.738+0000] {taskinstance.py:2674} INFO - 2 downstream tasks scheduled from follow-on schedule check
+[2025-04-17T05:15:03.437+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_downloader_dag.setup_environment scheduled__2025-04-06T00:00:00+00:00 [queued]>
+[2025-04-17T05:15:03.443+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_downloader_dag.setup_environment scheduled__2025-04-06T00:00:00+00:00 [queued]>
+[2025-04-17T05:15:03.443+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 3
+[2025-04-17T05:15:03.450+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): setup_environment> on 2025-04-06 00:00:00+00:00
+[2025-04-17T05:15:03.453+0000] {standard_task_runner.py:57} INFO - Started process 226 to run task
+[2025-04-17T05:15:03.456+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_downloader_dag', 'setup_environment', 'scheduled__2025-04-06T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/Download_model.py', '--cfg-path', '/tmp/tmpzh54zbxt']
+[2025-04-17T05:15:03.457+0000] {standard_task_runner.py:85} INFO - Job 4: Subtask setup_environment
+[2025-04-17T05:15:03.490+0000] {task_command.py:410} INFO - Running <TaskInstance: model_downloader_dag.setup_environment scheduled__2025-04-06T00:00:00+00:00 [running]> on host 5e6e96c1853a
+[2025-04-17T05:15:03.532+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_downloader_dag' AIRFLOW_CTX_TASK_ID='setup_environment' AIRFLOW_CTX_EXECUTION_DATE='2025-04-06T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-06T00:00:00+00:00'
+[2025-04-17T05:15:03.532+0000] {Download_model.py:48} INFO - Environment setup completed
+[2025-04-17T05:15:03.532+0000] {python.py:183} INFO - Done. Returned value was: None
+[2025-04-17T05:15:03.538+0000] {taskinstance.py:1368} INFO - Marking task as SUCCESS. dag_id=model_downloader_dag, task_id=setup_environment, execution_date=20250406T000000, start_date=20250417T051503, end_date=20250417T051503
+[2025-04-17T05:15:03.547+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-04-17T05:15:03.559+0000] {taskinstance.py:2674} INFO - 2 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,72 @@
+[2025-04-17T04:14:39.453+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_downloader_dag.download_llm_model scheduled__2025-04-06T00:00:00+00:00 [queued]>
+[2025-04-17T04:14:39.467+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_downloader_dag.download_llm_model scheduled__2025-04-06T00:00:00+00:00 [queued]>
+[2025-04-17T04:14:39.467+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 3
+[2025-04-17T04:14:39.474+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): download_llm_model> on 2025-04-06 00:00:00+00:00
+[2025-04-17T04:14:39.477+0000] {standard_task_runner.py:57} INFO - Started process 917 to run task
+[2025-04-17T04:14:39.479+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_downloader_dag', 'download_llm_model', 'scheduled__2025-04-06T00:00:00+00:00', '--job-id', '26', '--raw', '--subdir', 'DAGS_FOLDER/Download_model.py', '--cfg-path', '/tmp/tmp9pi36bbz']
+[2025-04-17T04:14:39.480+0000] {standard_task_runner.py:85} INFO - Job 26: Subtask download_llm_model
+[2025-04-17T04:14:39.514+0000] {task_command.py:410} INFO - Running <TaskInstance: model_downloader_dag.download_llm_model scheduled__2025-04-06T00:00:00+00:00 [running]> on host 8793e6621b44
+[2025-04-17T04:14:39.563+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_downloader_dag' AIRFLOW_CTX_TASK_ID='download_llm_model' AIRFLOW_CTX_EXECUTION_DATE='2025-04-06T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-06T00:00:00+00:00'
+[2025-04-17T04:14:39.564+0000] {Download_model.py:59} INFO - Model is already at the latest version
+[2025-04-17T04:14:39.564+0000] {Download_model.py:118} INFO - No need to download LLM model
+[2025-04-17T04:14:39.564+0000] {python.py:183} INFO - Done. Returned value was: None
+[2025-04-17T04:14:39.572+0000] {taskinstance.py:1368} INFO - Marking task as SUCCESS. dag_id=model_downloader_dag, task_id=download_llm_model, execution_date=20250406T000000, start_date=20250417T041439, end_date=20250417T041439
+[2025-04-17T04:14:39.616+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-04-17T04:14:39.628+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-04-17T04:49:59.792+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_downloader_dag.download_llm_model scheduled__2025-04-06T00:00:00+00:00 [queued]>
+[2025-04-17T04:49:59.797+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_downloader_dag.download_llm_model scheduled__2025-04-06T00:00:00+00:00 [queued]>
+[2025-04-17T04:49:59.797+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 3
+[2025-04-17T04:49:59.805+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): download_llm_model> on 2025-04-06 00:00:00+00:00
+[2025-04-17T04:49:59.807+0000] {standard_task_runner.py:57} INFO - Started process 197 to run task
+[2025-04-17T04:49:59.810+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_downloader_dag', 'download_llm_model', 'scheduled__2025-04-06T00:00:00+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/Download_model.py', '--cfg-path', '/tmp/tmpwcy2jj9g']
+[2025-04-17T04:49:59.810+0000] {standard_task_runner.py:85} INFO - Job 8: Subtask download_llm_model
+[2025-04-17T04:49:59.842+0000] {task_command.py:410} INFO - Running <TaskInstance: model_downloader_dag.download_llm_model scheduled__2025-04-06T00:00:00+00:00 [running]> on host 6a2e1eff80f4
+[2025-04-17T04:49:59.879+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_downloader_dag' AIRFLOW_CTX_TASK_ID='download_llm_model' AIRFLOW_CTX_EXECUTION_DATE='2025-04-06T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-06T00:00:00+00:00'
+[2025-04-17T04:49:59.879+0000] {Download_model.py:59} INFO - Model is already at the latest version
+[2025-04-17T04:49:59.879+0000] {Download_model.py:118} INFO - No need to download LLM model
+[2025-04-17T04:49:59.879+0000] {python.py:183} INFO - Done. Returned value was: None
+[2025-04-17T04:49:59.884+0000] {taskinstance.py:1368} INFO - Marking task as SUCCESS. dag_id=model_downloader_dag, task_id=download_llm_model, execution_date=20250406T000000, start_date=20250417T044959, end_date=20250417T044959
+[2025-04-17T04:49:59.901+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-04-17T04:49:59.909+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-04-17T04:59:49.729+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_downloader_dag.download_llm_model scheduled__2025-04-06T00:00:00+00:00 [queued]>
+[2025-04-17T04:59:49.735+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_downloader_dag.download_llm_model scheduled__2025-04-06T00:00:00+00:00 [queued]>
+[2025-04-17T04:59:49.735+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 3
+[2025-04-17T04:59:49.742+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): download_llm_model> on 2025-04-06 00:00:00+00:00
+[2025-04-17T04:59:49.744+0000] {standard_task_runner.py:57} INFO - Started process 335 to run task
+[2025-04-17T04:59:49.747+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_downloader_dag', 'download_llm_model', 'scheduled__2025-04-06T00:00:00+00:00', '--job-id', '14', '--raw', '--subdir', 'DAGS_FOLDER/Download_model.py', '--cfg-path', '/tmp/tmpz_uw5e9s']
+[2025-04-17T04:59:49.747+0000] {standard_task_runner.py:85} INFO - Job 14: Subtask download_llm_model
+[2025-04-17T04:59:49.777+0000] {task_command.py:410} INFO - Running <TaskInstance: model_downloader_dag.download_llm_model scheduled__2025-04-06T00:00:00+00:00 [running]> on host 6a2e1eff80f4
+[2025-04-17T04:59:49.816+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_downloader_dag' AIRFLOW_CTX_TASK_ID='download_llm_model' AIRFLOW_CTX_EXECUTION_DATE='2025-04-06T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-06T00:00:00+00:00'
+[2025-04-17T04:59:49.816+0000] {Download_model.py:53} INFO - LLM model rules already exist, skipping download
+[2025-04-17T04:59:49.816+0000] {python.py:183} INFO - Done. Returned value was: None
+[2025-04-17T04:59:49.822+0000] {taskinstance.py:1368} INFO - Marking task as SUCCESS. dag_id=model_downloader_dag, task_id=download_llm_model, execution_date=20250406T000000, start_date=20250417T045949, end_date=20250417T045949
+[2025-04-17T04:59:49.837+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-04-17T04:59:49.846+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-04-17T05:15:04.496+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_downloader_dag.download_llm_model scheduled__2025-04-06T00:00:00+00:00 [queued]>
+[2025-04-17T05:15:04.502+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_downloader_dag.download_llm_model scheduled__2025-04-06T00:00:00+00:00 [queued]>
+[2025-04-17T05:15:04.502+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 3
+[2025-04-17T05:15:04.510+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): download_llm_model> on 2025-04-06 00:00:00+00:00
+[2025-04-17T05:15:04.513+0000] {standard_task_runner.py:57} INFO - Started process 231 to run task
+[2025-04-17T05:15:04.515+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_downloader_dag', 'download_llm_model', 'scheduled__2025-04-06T00:00:00+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/Download_model.py', '--cfg-path', '/tmp/tmp32qtprkn']
+[2025-04-17T05:15:04.516+0000] {standard_task_runner.py:85} INFO - Job 6: Subtask download_llm_model
+[2025-04-17T05:15:04.549+0000] {task_command.py:410} INFO - Running <TaskInstance: model_downloader_dag.download_llm_model scheduled__2025-04-06T00:00:00+00:00 [running]> on host 5e6e96c1853a
+[2025-04-17T05:15:04.593+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_downloader_dag' AIRFLOW_CTX_TASK_ID='download_llm_model' AIRFLOW_CTX_EXECUTION_DATE='2025-04-06T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-06T00:00:00+00:00'
+[2025-04-17T05:15:04.600+0000] {taskinstance.py:1847} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/Download_model.py", line 57, in download_llm_model
+    result = subprocess.run(
+  File "/usr/local/lib/python3.9/subprocess.py", line 505, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/usr/local/lib/python3.9/subprocess.py", line 951, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/local/lib/python3.9/subprocess.py", line 1821, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+PermissionError: [Errno 13] Permission denied: 'ollama'
+[2025-04-17T05:15:04.606+0000] {taskinstance.py:1368} INFO - Marking task as UP_FOR_RETRY. dag_id=model_downloader_dag, task_id=download_llm_model, execution_date=20250406T000000, start_date=20250417T051504, end_date=20250417T051504
+[2025-04-17T05:15:04.613+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 6 for task download_llm_model ([Errno 13] Permission denied: 'ollama'; 231)
+[2025-04-17T05:15:04.647+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 1
+[2025-04-17T05:15:04.655+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

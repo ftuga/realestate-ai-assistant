@@ -1,0 +1,59 @@
+[2025-04-17T03:46:39.073+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: zephyr_real_estate_model_dag.fine_tune_model manual__2025-04-17T03:41:25.363584+00:00 [queued]>
+[2025-04-17T03:46:39.078+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: zephyr_real_estate_model_dag.fine_tune_model manual__2025-04-17T03:41:25.363584+00:00 [queued]>
+[2025-04-17T03:46:39.078+0000] {taskinstance.py:1331} INFO - Starting attempt 2 of 4
+[2025-04-17T03:46:39.083+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): fine_tune_model> on 2025-04-17 03:41:25.363584+00:00
+[2025-04-17T03:46:39.087+0000] {standard_task_runner.py:57} INFO - Started process 312 to run task
+[2025-04-17T03:46:39.089+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'zephyr_real_estate_model_dag', 'fine_tune_model', 'manual__2025-04-17T03:41:25.363584+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/Download_model.py', '--cfg-path', '/tmp/tmpw_ae4oo7']
+[2025-04-17T03:46:39.089+0000] {standard_task_runner.py:85} INFO - Job 7: Subtask fine_tune_model
+[2025-04-17T03:46:39.117+0000] {task_command.py:410} INFO - Running <TaskInstance: zephyr_real_estate_model_dag.fine_tune_model manual__2025-04-17T03:41:25.363584+00:00 [running]> on host 8793e6621b44
+[2025-04-17T03:46:39.156+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='zephyr_real_estate_model_dag' AIRFLOW_CTX_TASK_ID='fine_tune_model' AIRFLOW_CTX_EXECUTION_DATE='2025-04-17T03:41:25.363584+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-04-17T03:41:25.363584+00:00'
+[2025-04-17T03:46:39.156+0000] {Download_model.py:80} INFO - PyTorch patched for compatibility
+[2025-04-17T03:46:39.252+0000] {warnings.py:109} WARNING - /home/***/.local/lib/python3.9/site-packages/transformers/utils/hub.py:105: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+
+[2025-04-17T03:46:40.367+0000] {cextension.py:77} WARNING - The installed version of bitsandbytes was compiled without GPU support. 8-bit optimizers, 8-bit multiplication, and GPU quantization are unavailable.
+[2025-04-17T03:46:40.402+0000] {Download_model.py:192} INFO - Loading tokenizer...
+[2025-04-17T03:46:40.728+0000] {logging_mixin.py:149} WARNING - CUDA is required but not available for bitsandbytes. Please consider installing the multi-platform enabled version of bitsandbytes, which is currently a work in progress. Please check currently supported platforms and installation instructions at https://huggingface.co/docs/bitsandbytes/main/en/installation#multi-backend
+[2025-04-17T03:46:40.728+0000] {Download_model.py:415} ERROR - Error in LoRA fine-tuning: CUDA is required but not available for bitsandbytes. Please consider installing the multi-platform enabled version of bitsandbytes, which is currently a work in progress. Please check currently supported platforms and installation instructions at https://huggingface.co/docs/bitsandbytes/main/en/installation#multi-backend
+[2025-04-17T03:46:40.730+0000] {Download_model.py:416} ERROR - Traceback (most recent call last):
+  File "/opt/***/dags/Download_model.py", line 203, in fine_tune_model
+    model = AutoModelForCausalLM.from_pretrained(
+  File "/home/***/.local/lib/python3.9/site-packages/transformers/models/auto/auto_factory.py", line 571, in from_pretrained
+    return model_class.from_pretrained(
+  File "/home/***/.local/lib/python3.9/site-packages/transformers/modeling_utils.py", line 279, in _wrapper
+    return func(*args, **kwargs)
+  File "/home/***/.local/lib/python3.9/site-packages/transformers/modeling_utils.py", line 4228, in from_pretrained
+    hf_quantizer.validate_environment(
+  File "/home/***/.local/lib/python3.9/site-packages/transformers/quantizers/quantizer_bnb_8bit.py", line 81, in validate_environment
+    validate_bnb_backend_availability(raise_exception=True)
+  File "/home/***/.local/lib/python3.9/site-packages/transformers/integrations/bitsandbytes.py", line 561, in validate_bnb_backend_availability
+    return _validate_bnb_cuda_backend_availability(raise_exception)
+  File "/home/***/.local/lib/python3.9/site-packages/transformers/integrations/bitsandbytes.py", line 539, in _validate_bnb_cuda_backend_availability
+    raise RuntimeError(log_msg)
+RuntimeError: CUDA is required but not available for bitsandbytes. Please consider installing the multi-platform enabled version of bitsandbytes, which is currently a work in progress. Please check currently supported platforms and installation instructions at https://huggingface.co/docs/bitsandbytes/main/en/installation#multi-backend
+
+[2025-04-17T03:46:40.730+0000] {taskinstance.py:1847} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.9/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/Download_model.py", line 203, in fine_tune_model
+    model = AutoModelForCausalLM.from_pretrained(
+  File "/home/airflow/.local/lib/python3.9/site-packages/transformers/models/auto/auto_factory.py", line 571, in from_pretrained
+    return model_class.from_pretrained(
+  File "/home/airflow/.local/lib/python3.9/site-packages/transformers/modeling_utils.py", line 279, in _wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.9/site-packages/transformers/modeling_utils.py", line 4228, in from_pretrained
+    hf_quantizer.validate_environment(
+  File "/home/airflow/.local/lib/python3.9/site-packages/transformers/quantizers/quantizer_bnb_8bit.py", line 81, in validate_environment
+    validate_bnb_backend_availability(raise_exception=True)
+  File "/home/airflow/.local/lib/python3.9/site-packages/transformers/integrations/bitsandbytes.py", line 561, in validate_bnb_backend_availability
+    return _validate_bnb_cuda_backend_availability(raise_exception)
+  File "/home/airflow/.local/lib/python3.9/site-packages/transformers/integrations/bitsandbytes.py", line 539, in _validate_bnb_cuda_backend_availability
+    raise RuntimeError(log_msg)
+RuntimeError: CUDA is required but not available for bitsandbytes. Please consider installing the multi-platform enabled version of bitsandbytes, which is currently a work in progress. Please check currently supported platforms and installation instructions at https://huggingface.co/docs/bitsandbytes/main/en/installation#multi-backend
+[2025-04-17T03:46:40.735+0000] {taskinstance.py:1368} INFO - Marking task as UP_FOR_RETRY. dag_id=zephyr_real_estate_model_dag, task_id=fine_tune_model, execution_date=20250417T034125, start_date=20250417T034639, end_date=20250417T034640
+[2025-04-17T03:46:40.744+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 7 for task fine_tune_model (CUDA is required but not available for bitsandbytes. Please consider installing the multi-platform enabled version of bitsandbytes, which is currently a work in progress. Please check currently supported platforms and installation instructions at https://huggingface.co/docs/bitsandbytes/main/en/installation#multi-backend; 312)
+[2025-04-17T03:46:40.784+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 1
+[2025-04-17T03:46:40.797+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check
