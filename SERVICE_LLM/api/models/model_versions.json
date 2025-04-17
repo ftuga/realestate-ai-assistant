@@ -1,12 +1,12 @@
 {
   "llm_model": {
-    "name": "mistral",
+    "name": "llama3:8b",
     "version": "1.0.0",
-    "last_update": "2025-04-17T11:49:21.996925"
+    "last_update": "2025-04-17T20:34:26.719478"
   },
   "embedding_model": {
     "name": "nomic-embed-text",
     "version": "1.0.0",
-    "last_update": "2025-04-17T11:49:48.291457"
+    "last_update": "2025-04-17T21:48:53.528573"
   }
 }

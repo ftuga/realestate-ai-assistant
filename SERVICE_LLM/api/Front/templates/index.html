@@ -747,7 +747,7 @@
         <div class="document-actions">
             <button id="select-all" class="action-button">Select All</button>
             <button id="deselect-all" class="action-button">Unselect All</button>
-            <button id="process-document" class="action-button">Process Selected</button>
+            <button id="delete-selected" class="action-button" style="background-color: var(--danger-color);">Delete Selected</button>
         </div>
         
     </div>
@@ -1152,7 +1152,7 @@ elements.newChatButton.addEventListener('click', startNewChat);
 
 function startNewChat() {
     if (elements.chatContainer.childElementCount > 1) {
-        if (!confirm('¿Estás seguro de que deseas iniciar un nuevo chat? Se perderá la conversación actual.')) {
+        if (!confirm('Are you sure you want to start a new chat? The current conversation will be lost.')) {
             return;
         }
     }
@@ -1160,7 +1160,7 @@ function startNewChat() {
     elements.chatContainer.innerHTML = '';
     
     elements.messageInput.value = '';
-    
+    cleanupTemporaryDocuments();
     console.log('Nuevo chat iniciado');
 }
 
@@ -1173,6 +1173,30 @@ elements.uploadButton.addEventListener('click', () => elements.fileUpload.click(
 elements.fileUpload.addEventListener('change', uploadPDF);
 elements.processDocumentBtn.addEventListener('click', processSelectedDocuments);
 
+
+async function cleanupTemporaryDocuments() {
+    try {
+        const sessionId = localStorage.getItem('document_session_id');
+        if (!sessionId) return;
+        
+        localStorage.setItem('document_session_id', 'session_' + Date.now() + '_' + Math.random().toString(36).substring(2, 15));
+        
+        await fetch('/cleanup-session', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                session_id: sessionId
+            })
+        });
+        
+        fetchDocuments();
+    } catch (error) {
+        console.error('Error cleaning up temporary documents:', error);
+    }
+}
+
 async function uploadPDF(event) {
     const file = event.target.files[0];
     if (!file) return;
@@ -1184,6 +1208,7 @@ async function uploadPDF(event) {
     
     const formData = new FormData();
     formData.append('file', file);
+    formData.append('session_id', getSessionId()); 
     
     showUploadStatus('Uploading document...', 'progress');
     
@@ -1223,6 +1248,82 @@ function showUploadStatus(message, type) {
             elements.uploadStatus.style.display = 'none';
         }, 5000);
     }
+}
+function getSessionId() {
+    let sessionId = localStorage.getItem('document_session_id');
+    if (!sessionId) {
+        sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substring(2, 15);
+        localStorage.setItem('document_session_id', sessionId);
+    }
+    return sessionId;
+}
+
+function updateDocumentList() {
+    elements.documentList.innerHTML = '';
+    
+    if (state.documents.length === 0) {
+        elements.documentList.innerHTML = '<p>No documents available</p>';
+        return;
+    }
+    
+    state.documentGroups = groupDocumentsByType(state.documents);
+    
+    state.documentGroups.forEach(group => {
+        const groupElement = document.createElement('div');
+        groupElement.className = 'document-group';
+        
+        const groupHeader = document.createElement('div');
+        groupHeader.className = 'document-group-header';
+        groupHeader.innerHTML = `
+            <span>${group.type} (${group.documents.length})</span>
+            <span class="toggle-icon">▼</span>
+        `;
+        groupHeader.addEventListener('click', () => {
+            groupElement.classList.toggle('active');
+        });
+        
+        const groupContent = document.createElement('div');
+        groupContent.className = 'document-group-content';
+        
+        group.documents.forEach(doc => {
+            const docElement = document.createElement('div');
+            docElement.className = 'document-item';
+            
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = `doc-${doc.doc_id}`;
+            checkbox.value = doc.doc_id;
+            
+            const label = document.createElement('label');
+            label.htmlFor = `doc-${doc.doc_id}`;
+            label.textContent = `${doc.filename} (${doc.page_count} pages)`;
+            
+            if (doc.status === 'processed') {
+                const badge = document.createElement('span');
+                badge.className = 'processed-badge';
+                badge.textContent = 'Processed';
+                label.appendChild(badge);
+            } else if (doc.status === 'processing') {
+                const badge = document.createElement('span');
+                badge.className = 'processing-badge';
+                badge.textContent = 'Processing...';
+                label.appendChild(badge);
+            } else {
+                const badge = document.createElement('span');
+                badge.className = 'unprocessed-badge';
+                badge.textContent = 'Unprocessed';
+                label.appendChild(badge);
+            }
+            
+            docElement.appendChild(checkbox);
+            docElement.appendChild(label);
+            groupContent.appendChild(docElement);
+        });
+        
+        groupElement.appendChild(groupHeader);
+        groupElement.appendChild(groupContent);
+        elements.documentList.appendChild(groupElement);
+    });
 }
 
 async function processSelectedDocuments() {
@@ -1293,72 +1394,60 @@ async function processSelectedDocuments() {
     }
 }
 
-function updateDocumentList() {
-    elements.documentList.innerHTML = '';
+
+elements.deleteSelectedBtn = document.getElementById('delete-selected');
+elements.deleteSelectedBtn.addEventListener('click', deleteSelectedDocuments);
+
+async function deleteSelectedDocuments() {
+    const selectedDocs = Array.from(document.querySelectorAll('#document-list input[type="checkbox"]:checked'))
+        .map(checkbox => checkbox.value);
     
-    if (state.documents.length === 0) {
-        elements.documentList.innerHTML = '<p>No documents available</p>';
+    if (selectedDocs.length === 0) {
+        alert('Please select at least one document to delete');
         return;
     }
     
-    state.documentGroups = groupDocumentsByType(state.documents);
+    if (!confirm(`Are you sure you want to delete ${selectedDocs.length} selected document(s)? This action cannot be undone.`)) {
+        return;
+    }
     
-    state.documentGroups.forEach(group => {
-        const groupElement = document.createElement('div');
-        groupElement.className = 'document-group';
-        
-        const groupHeader = document.createElement('div');
-        groupHeader.className = 'document-group-header';
-        groupHeader.innerHTML = `
-            <span>${group.type} (${group.documents.length})</span>
-            <span class="toggle-icon">▼</span>
-        `;
-        groupHeader.addEventListener('click', () => {
-            groupElement.classList.toggle('active');
-        });
-        
-        const groupContent = document.createElement('div');
-        groupContent.className = 'document-group-content';
-        
-        group.documents.forEach(doc => {
-            const docElement = document.createElement('div');
-            docElement.className = 'document-item';
+    let successCount = 0;
+    let errorCount = 0;
+    
+    for (const docId of selectedDocs) {
+        try {
+            const response = await fetch(`/document/${docId}`, {
+                method: 'DELETE'
+            });
             
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.id = `doc-${doc.doc_id}`;
-            checkbox.value = doc.doc_id;
-            
-            const label = document.createElement('label');
-            label.htmlFor = `doc-${doc.doc_id}`;
-            label.textContent = `${doc.filename} (${doc.page_count} pages)`;
-            
-            if (doc.status === 'processed') {
-                const badge = document.createElement('span');
-                badge.className = 'processed-badge';
-                badge.textContent = 'Processed';
-                label.appendChild(badge);
-            } else if (doc.status === 'processing') {
-                const badge = document.createElement('span');
-                badge.className = 'processing-badge';
-                badge.textContent = 'Processing...';
-                label.appendChild(badge);
-            } else {
-                const badge = document.createElement('span');
-                badge.className = 'unprocessed-badge';
-                badge.textContent = 'Unprocessed';
-                label.appendChild(badge);
+            if (!response.ok) {
+                throw new Error(`Delete failed: ${response.statusText}`);
             }
             
-            docElement.appendChild(checkbox);
-            docElement.appendChild(label);
-            groupContent.appendChild(docElement);
-        });
-        
-        groupElement.appendChild(groupHeader);
-        groupElement.appendChild(groupContent);
-        elements.documentList.appendChild(groupElement);
-    });
+            const result = await response.json();
+            
+            if (result.status === 'success') {
+                successCount++;
+            } else {
+                throw new Error(result.message || 'Delete failed');
+            }
+        } catch (error) {
+            console.error(`Error deleting document ${docId}:`, error);
+            errorCount++;
+        }
+    }
+    
+    if (successCount > 0) {
+        const message = `Successfully deleted ${successCount} document(s)`;
+        if (errorCount > 0) {
+            alert(`${message}, but failed to delete ${errorCount} document(s). See console for details.`);
+        } else {
+            alert(message);
+        }
+        fetchDocuments(); 
+    } else if (errorCount > 0) {
+        alert(`Failed to delete ${errorCount} document(s). See console for details.`);
+    }
 }
 
 </script>

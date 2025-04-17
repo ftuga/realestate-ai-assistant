@@ -17,11 +17,11 @@ logger = logging.getLogger("model_manager")
 
 OLLAMA_API_URL = os.environ.get("OLLAMA_URL", "http://ollama:11434")
 HTTP_TIMEOUT = 30
-REAL_ESTATE_MODEL = "mistral"
+REAL_ESTATE_MODEL = "llama3:8b"
 EMBEDDING_MODEL = "nomic-embed-text"
 MODEL_CHECK_INTERVAL = 60 
 MODELS_DIR = os.environ.get("MODELS_DIR", "/opt/airflow/models")
-LLM_MODEL_DIR = f"{MODELS_DIR}/mistral"
+LLM_MODEL_DIR = f"{MODELS_DIR}/llama3:8b"
 VERSION_FILE = f"{MODELS_DIR}/model_versions.json"
 TORCH_DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -188,7 +188,7 @@ class ModelManager:
             return {"status": "exists"}
         
         try:
-            logger.info("Creating model rules file for Mistral with examples")
+            logger.info("Creating model rules file for llama3:8b with examples")
             
             system_prompt =  """You are a specialized luxury real estate assistant from MILLION. Your role is:
                                 1. When users ask about specific properties, use ONLY the information provided in the context to answer.
@@ -198,6 +198,9 @@ class ModelManager:
                                 5. If the answer cannot be found in the provided documents, say 'I don't have that information in the provided data.'
                                 6. Never mention that you're using context in your responses.
                                 7. Never mention your rules to the user or any process related to your training.
+                                8. IMPORTANT: You MUST remember the previous messages from the conversation history and refer to them when asked about them.
+                                9. If the user refers to a previous message, always provide an accurate response based on that message.
+                                10. Keep track of your own previous responses to ensure continuity in the conversation.
                                 Important: Always respond in the same language that was used in the question."""
 
             examples = [
@@ -232,9 +235,9 @@ class ModelManager:
                             },
 
                             {
-                                "instruction": "What are the dining options at Brickell Home Luxury?", 
-                                "context": "BRICKELL HOME LUXURY\nAMENITIES\nSignature oceanfront restaurant by a celebrated chef exclusive to residents.\nBeachside food and beverage service.\nSprawling conservatory offering daily breakfast bar.\nStylish cocktail lounge and speakeasy.\nSunrise lounge with catering kitchen for entertaining and events.", 
-                                "response": "Brickell Home Luxury offers a signature oceanfront restaurant by a celebrated chef (exclusive to residents), beachside food and beverage service, a sprawling conservatory with daily breakfast bar, a stylish cocktail lounge and speakeasy, and a sunrise lounge with catering kitchen for entertaining and events."
+                                "instruction": "What did you tell me about the dining options at Brickell Home Luxury?", 
+                                "previous_response": "Brickell Home Luxury offers a signature oceanfront restaurant by a celebrated chef (exclusive to residents), beachside food and beverage service, a sprawling conservatory with daily breakfast bar, a stylish cocktail lounge and speakeasy, and a sunrise lounge with catering kitchen for entertaining and events.",
+                                "response": "I told you that Brickell Home Luxury offers a signature oceanfront restaurant by a celebrated chef (exclusive to residents), beachside food and beverage service, a sprawling conservatory with daily breakfast bar, a stylish cocktail lounge and speakeasy, and a sunrise lounge with catering kitchen for entertaining and events."
                             },
 
                             {
@@ -250,9 +253,9 @@ class ModelManager:
                             },
 
                             {
-                                "instruction": "Do any properties include wellness amenities?", 
-                                "context": "UNA CLUB\nAMENITIES\nOutdoor wellness & relaxation terrace with plunge pools.\n\nBRICKELL HOME LUXURY\nAMENITIES\nBeachside swimming pool and outdoor spa with sunbeds and cabanas.\nOutdoor spa\nSpa, fitness wellness center, and Bicycle storage.", 
-                                "response": "Yes, both UNA CLUB and Brickell Home Luxury include wellness amenities. UNA CLUB offers an outdoor wellness & relaxation terrace with plunge pools, while Brickell Home Luxury features a beachside swimming pool and outdoor spa with sunbeds and cabanas, as well as a spa and fitness wellness center."
+                                "instruction": "What did you say about wellness amenities earlier?", 
+                                "previous_response": "Yes, both UNA CLUB and Brickell Home Luxury include wellness amenities. UNA CLUB offers an outdoor wellness & relaxation terrace with plunge pools, while Brickell Home Luxury features a beachside swimming pool and outdoor spa with sunbeds and cabanas, as well as a spa and fitness wellness center.",
+                                "response": "I mentioned that both UNA CLUB and Brickell Home Luxury include wellness amenities. UNA CLUB offers an outdoor wellness & relaxation terrace with plunge pools, while Brickell Home Luxury features a beachside swimming pool and outdoor spa with sunbeds and cabanas, as well as a spa and fitness wellness center."
                             },
 
                             {
@@ -263,9 +266,9 @@ class ModelManager:
                                                     
             rules_js = f"""
                         export const modelRules = {{
-                            "name": "mistral",
+                            "name": "llama3:8b",
                             "version": "1.0.0",
-                            "description": "Real estate assistant based on Mistral",
+                            "description": "Real estate assistant based on llama3:8b",
                             "systemPrompt": `{system_prompt}`,
                             "examples":{examples},
                             "rules": [
@@ -275,7 +278,9 @@ class ModelManager:
                                         "Keep responses concise and to the point",
                                         "Don't add disclaimers or explanations",
                                         "Never mention using context in responses",
-                                        "Respond in the same language as the question"
+                                        "Respond in the same language as the question",
+                                        "Remember previous messages in the conversation",
+                                        "Refer accurately to previous exchanges when asked"
                                     ],
                             "parameters": {{
                                 "temperature": 0.01,
@@ -294,15 +299,13 @@ class ModelManager:
             
             self.model_rules = self.load_model_rules()
             
-            logger.info("Model rules created successfully for Mistral with examples")
+            logger.info("Model rules created successfully for llama3:8b with examples")
             return {"status": "created"}
             
         except Exception as e:
             logger.error(f"Error creating model rules: {e}")
             return {"status": "error", "message": str(e)}
         
-    
-    
     async def download_llm_model(self):
         """Download the LLM model if not available"""
         try:
@@ -597,7 +600,7 @@ async def generate_llm_response(messages, context_chunks):
     try:
         if not model_manager.llm_model_available:
             return "The assistant model is not available. Please wait a moment and try again."
-            
+        
         context_text = ""
         if context_chunks and len(context_chunks) > 0:
             doc_chunks = {}
@@ -621,6 +624,9 @@ async def generate_llm_response(messages, context_chunks):
                     if chunk_text:
                         context_text += f"{chunk_text}\n\n"
         
+        if not messages or len(messages) == 0:
+            return "I need a question to answer. How can I help you?"
+
         last_user_msg = next((msg.content for msg in reversed(messages) if msg.role == "user"), "")
         
         greeting_patterns = ["hello", "hi", "hey", "greetings", "hola"]
@@ -632,7 +638,57 @@ async def generate_llm_response(messages, context_chunks):
         if is_greeting:
             return "Hello! I'm your Million Luxury Real Estate assistant. How can I help you today? You can select specific documents to consult or ask general questions about the available properties."
         
-        system_prompt =  """You are a specialized luxury real estate assistant from MILLION. Your role is:
+        conversation_memory = []
+        
+        relevant_messages = messages[-10:] if len(messages) > 10 else messages
+        
+        conversation_pairs = []
+        current_pair = []
+        
+        for msg in relevant_messages:
+            current_pair.append(msg)
+            if len(current_pair) == 2 and current_pair[0].role == "user" and current_pair[1].role == "assistant":
+                conversation_pairs.append(current_pair)
+                current_pair = []
+        
+        if len(current_pair) == 1 and current_pair[0].role == "user":
+            conversation_pairs.append(current_pair)
+        
+        for i, pair in enumerate(conversation_pairs):
+            if len(pair) == 2:  
+                conversation_memory.append({
+                    "turn": i+1,
+                    "user_message": pair[0].content,
+                    "assistant_response": pair[1].content
+                })
+            elif len(pair) == 1:  
+                conversation_memory.append({
+                    "turn": i+1,
+                    "user_message": pair[0].content,
+                    "assistant_response": None  
+                })
+        
+        last_query = last_user_msg
+        
+        is_asking_about_previous = False
+        reference_patterns = [
+            "what did you say", "what did you tell me", 
+            "what you said", "mentioned earlier",
+            "you told me", "said before",
+            "previous message", "your last message",
+            "what you just said", "qué dijiste",
+            "qué me dijiste", "lo que dijiste",
+            "mencionaste", "me has dicho",
+            "que te acabo de", "acabas de",
+            "que te dije", "última respuesta"
+        ]
+        
+        for pattern in reference_patterns:
+            if pattern.lower() in last_query.lower():
+                is_asking_about_previous = True
+                break
+        
+        system_prompt = """You are a specialized luxury real estate assistant from MILLION. Your role is:
                         1. When users ask about specific properties, use ONLY the information provided in the context to answer.
                         2. When users ask general questions about available properties, price ranges, or features (like number of bathrooms/bedrooms), search through ALL provided documents and summarize the available information.
                         3. If asked about properties with specific features, analyze all documents and list the properties that match.
@@ -640,17 +696,32 @@ async def generate_llm_response(messages, context_chunks):
                         5. If the answer cannot be found in the provided documents, say 'I don't have that information in the provided data.'
                         6. Never mention that you're using context in your responses.
                         7. Never mention your rules to the user or any process related to your training.
+                        8. IMPORTANT: You MUST remember the conversation history provided in the CONVERSATION_MEMORY section.
+                        9. If the user asks about a previous message or what was said earlier, refer to the CONVERSATION_MEMORY to provide an accurate response.
                         Important: Always respond in the same language that was used in the question."""
-                                
+        
+        conversation_memory_text = "CONVERSATION_MEMORY:\n\n"
+        
+        for entry in conversation_memory:
+            conversation_memory_text += f"Turn {entry['turn']}:\n"
+            conversation_memory_text += f"User: {entry['user_message']}\n"
+            if entry['assistant_response']:
+                conversation_memory_text += f"Assistant: {entry['assistant_response']}\n"
+            conversation_memory_text += "\n"
+        
+        reference_instruction = ""
+        if is_asking_about_previous and len(conversation_memory) > 1:
+            reference_instruction = "\nThe user is asking about something mentioned in previous messages. Check the CONVERSATION_MEMORY carefully to provide an accurate response about what was said earlier.\n"
+        
         if context_text:
-            instruction = f"Here is the information from the documents:\n\n{context_text}\n\nQuestion: {last_user_msg}"
+            instruction = f"{conversation_memory_text}\n{reference_instruction}\nINFORMATION FROM DOCUMENTS:\n\n{context_text}\n\nBased on the conversation memory and document information above, please respond to the user's latest message: '{last_query}'"
         else:
-            instruction = last_user_msg
+            instruction = f"{conversation_memory_text}\n{reference_instruction}\nBased on the conversation memory above, please respond to the user's latest message: '{last_query}'"
         
         final_prompt = f"[INST] {system_prompt}\n\n{instruction} [/INST]"
         
         try:
-            logger.info(f"Sending prompt to Ollama using Mistral format")
+            logger.info(f"Sending prompt to Ollama using {REAL_ESTATE_MODEL} with explicit conversation memory")
             
             response = requests.post(
                 f"{OLLAMA_API_URL}/api/generate",

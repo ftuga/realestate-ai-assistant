@@ -35,8 +35,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 active_sessions = {}
+TEMP_DOCUMENTS = {}  # Formato: {session_id: [doc_id1, doc_id2, ...]}
 DATA_DIR = os.environ.get("DATA_DIR", "/opt/airflow/data")
 EMBEDDINGS_DIR = os.environ.get("EMBEDDINGS_DIR", "/opt/airflow/embeddings")
 UPLOAD_DIR = os.path.join(DATA_DIR, "uploads")
@@ -73,20 +73,91 @@ class DocumentUploadResponse(BaseModel):
 class ProcessDocumentRequest(BaseModel):
     doc_id: str
 
+async def cleanup_temp_documents(session_id=None):
+    try:
+        print(f"Starting cleanup for session: {session_id if session_id else 'ALL'}")
+        minio_client = load_models_step.get_minio_client()
+        docs_to_clean = []
+        
+        if session_id and session_id in TEMP_DOCUMENTS:
+            docs_to_clean = TEMP_DOCUMENTS[session_id]
+            print(f"Found {len(docs_to_clean)} temporary documents for session {session_id}")
+            del TEMP_DOCUMENTS[session_id]
+        else:
+            for sess_id, sess_docs in TEMP_DOCUMENTS.items():
+                docs_to_clean.extend(sess_docs)
+                print(f"Adding {len(sess_docs)} documents from session {sess_id} to cleanup")
+            print(f"Total of {len(docs_to_clean)} temporary documents found across all sessions")
+            TEMP_DOCUMENTS.clear()
+        
+        if not docs_to_clean:
+            print("No temporary documents to clean")
+            return
+            
+        try:
+            response = minio_client.get_object(load_models_step.MINIO_BUCKET, "metadata/document_list.json")
+            document_list = json.loads(response.read().decode('utf-8'))
+            response.close()
+            response.release_conn()
+        except Exception as e:
+            print(f"Error reading document list during cleanup: {e}")
+            return
+            
+        initial_count = len(document_list)
+        updated_list = [doc for doc in document_list if doc.get("doc_id") not in docs_to_clean]
+        removed_count = initial_count - len(updated_list)
+        print(f"Removing {removed_count} documents from the document list")
+        
+        for doc_id in docs_to_clean:
+            try:
+                objects_to_remove = [
+                    f"documents/{doc_id}.pdf",
+                    f"embeddings/{doc_id}_embeddings.json"
+                ]
+                
+                for obj_name in objects_to_remove:
+                    try:
+                        minio_client.remove_object(load_models_step.MINIO_BUCKET, obj_name)
+                        print(f"Deleted object: {obj_name}")
+                    except Exception as e:
+                        print(f"Could not delete {obj_name}: {e}")
+                        
+                print(f"Cleaned up temporary document: {doc_id}")
+            except Exception as e:
+                print(f"Error removing document {doc_id}: {e}")
+        
+        document_list_json = json.dumps(updated_list).encode('utf-8')
+        
+        minio_client.put_object(
+            bucket_name=load_models_step.MINIO_BUCKET,
+            object_name="metadata/document_list.json",
+            data=BytesIO(document_list_json),
+            length=len(document_list_json),
+            content_type="application/json"
+        )
+        print(f"Updated document list after cleaning {removed_count} documents")
+        
+    except Exception as e:
+        print(f"Critical error during cleanup of temporary documents: {e}")
+        
+
 @app.on_event("startup")
 async def startup_tasks():
-    """Tasks to execute on API startup"""
     model_manager.start_continuous_checking()
+
+@app.on_event("shutdown")
+async def shutdown_tasks():
+    print("Shutting down API, cleaning up temporary documents...")
+    await cleanup_temp_documents()
+    model_manager.stop_continuous_checking()
 
 @app.get("/", response_class=HTMLResponse)
 async def get_index():
-    """Return the index page"""
     with open("/app/Front/templates/index.html", "r", encoding="utf-8") as f:
         return f.read()
 
 @app.get("/documents")
 async def list_documents():
-    """List all available documents from Minio"""
     try:
         minio_client = load_models_step.get_minio_client()
         try:
@@ -143,8 +214,24 @@ async def list_documents():
             print(f"Error searching documents in filesystem: {e}")
             return []
 
+@app.post("/cleanup-session")
+async def cleanup_session(request: Request):
+    data = await request.json()
+    session_id = data.get("session_id")
+    
+    if not session_id:
+        raise HTTPException(status_code=400, detail="Session ID is required")
+    
+    await cleanup_temp_documents(session_id)
+    
+    return {
+        "status": "success",
+        "message": f"Cleaned up session: {session_id}",
+        "timestamp": datetime.now().isoformat()
+    }
+    
 @app.post("/upload-document", response_model=DocumentUploadResponse)
-async def upload_document(file: UploadFile = File(...)):
+async def upload_document(file: UploadFile = File(...), session_id: str = Form(None)):
     try:
         filename = file.filename
         if not filename.lower().endswith('.pdf'):
@@ -156,6 +243,16 @@ async def upload_document(file: UploadFile = File(...)):
         with open(temp_file_path, "wb") as buffer:
             content = await file.read()
             buffer.write(content)
+        
+        needs_ocr = False
+        try:
+            processor = RealEstatePDFProcessor()
+            has_text = processor.check_pdf_has_text(temp_file_path)
+            if not has_text:
+                needs_ocr = True
+                print(f"PDF {document_id} requires OCR processing")
+        except Exception as e:
+            print(f"Error checking PDF text content: {e}")
         
         try:
             minio_client = load_models_step.get_minio_client()
@@ -178,6 +275,8 @@ async def upload_document(file: UploadFile = File(...)):
             except:
                 document_list = []
             
+            is_temporary = session_id is not None
+            
             document_list.append({
                 "doc_id": document_id,
                 "filename": filename,
@@ -185,8 +284,16 @@ async def upload_document(file: UploadFile = File(...)):
                 "page_count": 0, 
                 "upload_date": datetime.now().isoformat(),
                 "processed_date": None,
-                "status": "uploaded"
+                "status": "uploaded",
+                "needs_ocr": needs_ocr,
+                "is_temporary": is_temporary
             })
+            
+            if is_temporary:
+                if session_id not in TEMP_DOCUMENTS:
+                    TEMP_DOCUMENTS[session_id] = []
+                TEMP_DOCUMENTS[session_id].append(document_id)
+                print(f"Document {document_id} marked as temporary for session {session_id}")
             
             document_list_json = json.dumps(document_list).encode('utf-8')
             minio_client.put_object(
@@ -197,13 +304,60 @@ async def upload_document(file: UploadFile = File(...)):
                 content_type="application/json"
             )
             
+            processor = RealEstatePDFProcessor()
+            try:
+                print(f"Processing uploaded document {document_id}...")
+                result = processor.process_pdf(temp_file_path, document_id)
+                
+                result_json = json.dumps(result).encode('utf-8')
+                minio_client.put_object(
+                    bucket_name=load_models_step.MINIO_BUCKET,
+                    object_name=f"embeddings/{document_id}_embeddings.json",
+                    data=BytesIO(result_json),
+                    length=len(result_json),
+                    content_type="application/json"
+                )
+                
+                try:
+                    response = minio_client.get_object(load_models_step.MINIO_BUCKET, "metadata/document_list.json")
+                    document_list = json.loads(response.read().decode('utf-8'))
+                    response.close()
+                    response.release_conn()
+                    
+                    for doc in document_list:
+                        if doc.get("doc_id") == document_id:
+                            doc["status"] = "processed"
+                            doc["processed_date"] = datetime.now().isoformat()
+                            doc["page_count"] = result.get("page_count", 0)
+                            doc["chunks"] = len(result.get("chunks", []))
+                    
+                    document_list_json = json.dumps(document_list).encode('utf-8')
+                    minio_client.put_object(
+                        bucket_name=load_models_step.MINIO_BUCKET,
+                        object_name="metadata/document_list.json",
+                        data=BytesIO(document_list_json),
+                        length=len(document_list_json),
+                        content_type="application/json"
+                    )
+                except Exception as e:
+                    print(f"Error updating document metadata after processing: {e}")
+                
+                processing_status = "success"
+                processing_message = f"Document processed successfully with {len(result.get('chunks', []))} chunks"
+            except Exception as e:
+                print(f"Error processing uploaded document: {e}")
+                processing_status = "error"
+                processing_message = f"Document uploaded but processing failed: {str(e)}"
+            
             os.remove(temp_file_path)
             
             return {
                 "status": "success",
                 "document_id": document_id,
-                "message": f"Document {filename} uploaded successfully as {document_id}",
-                "timestamp": datetime.now().isoformat()
+                "message": f"Document {filename} uploaded successfully as {document_id}. {processing_message}",
+                "timestamp": datetime.now().isoformat(),
+                "processing_status": processing_status,
+                "is_temporary": is_temporary
             }
             
         except Exception as e:
@@ -308,37 +462,92 @@ async def process_document(request: ProcessDocumentRequest):
 
 @app.post("/chat")
 async def chat(request: ChatRequest):
-    messages = [ChatMessage(role=msg.role, content=msg.content) for msg in request.messages]
+    messages = request.messages
     doc_ids = request.doc_ids
-    
-    user_query = next((msg.content for msg in reversed(messages) if msg.role == "user"), None)
-    
+
+    formatted_messages = [ChatMessage(role=msg.role, content=msg.content) for msg in messages]
+
+    session_id = None
+    for msg in messages:
+        if hasattr(msg, 'metadata') and msg.metadata and 'session_id' in msg.metadata:
+            session_id = msg.metadata['session_id']
+            break
+
+    if not session_id:
+        session_id = str(uuid.uuid4())
+
+    if session_id not in active_sessions:
+        active_sessions[session_id] = SessionData(session_id)
+
+    session = active_sessions[session_id]
+
+    if len(formatted_messages) > 1 and len(session.messages) > 0:
+        if len(formatted_messages) >= len(session.messages):
+            session.messages = formatted_messages
+        else:
+            last_user_msg = next((msg for msg in reversed(formatted_messages) if msg.role == "user"), None)
+            if last_user_msg:
+                session.add_message("user", last_user_msg.content)
+    elif len(formatted_messages) == 1 and formatted_messages[0].role == "user":
+        session.add_message("user", formatted_messages[0].content)
+
+    user_query = next((msg.content for msg in reversed(session.messages) if msg.role == "user"), None)
+
     if not user_query:
         raise HTTPException(status_code=400, detail="No user query found in messages")
-    
-    if not doc_ids and is_property_filter_query(user_query):
-        try:
-            minio_client = load_models_step.get_minio_client()
-            response = minio_client.get_object(load_models_step.MINIO_BUCKET, "metadata/document_list.json")
-            document_list = json.loads(response.read().decode('utf-8'))
-            response.close()
-            response.release_conn()
-            
-            doc_ids = [doc.get("doc_id") for doc in document_list 
-                      if doc.get("status") == "processed"]
-                      
-            print(f"Filter query detected: '{user_query}'. Using all available documents: {len(doc_ids)}")
-            
-        except Exception as e:
-            print(f"Error getting document list for filter query: {e}")
-    
+
+    if doc_ids:
+        session.selected_docs = doc_ids
+    else:
+        if session.selected_docs:
+            doc_ids = session.selected_docs
+        else:
+            try:
+                minio_client = load_models_step.get_minio_client()
+                response = minio_client.get_object(load_models_step.MINIO_BUCKET, "metadata/document_list.json")
+                document_list = json.loads(response.read().decode('utf-8'))
+                response.close()
+                response.release_conn()
+
+                document_list.sort(key=lambda x: x.get("upload_date", ""), reverse=True)
+
+                doc_ids = [doc.get("doc_id") for doc in document_list if doc.get("status") == "processed"]
+            except Exception as e:
+                print(f"Error getting document list: {e}")
+
+    mentioned_docs = []
+    try:
+        minio_client = load_models_step.get_minio_client()
+        response = minio_client.get_object(load_models_step.MINIO_BUCKET, "metadata/document_list.json")
+        document_list = json.loads(response.read().decode('utf-8'))
+        response.close()
+        response.release_conn()
+
+        for doc in document_list:
+            filename = doc.get("original_filename", "")
+            doc_id = doc.get("doc_id", "")
+            if filename and filename.lower() in user_query.lower():
+                mentioned_docs.append(doc_id)
+                print(f"User mentioned document: {filename} (ID: {doc_id})")
+
+        if mentioned_docs:
+            doc_ids = list(set(doc_ids + mentioned_docs))
+    except Exception as e:
+        print(f"Error searching for document mentions: {e}")
+
     relevant_chunks = get_relevant_chunks(user_query, doc_ids)
-    
     print(f"Retrieved {len(relevant_chunks)} chunks for query: {user_query[:50]}...")
-    
-    response = await generate_llm_response(messages, relevant_chunks)
-    
-    return {"response": response}
+
+    response_text = await generate_llm_response(session.messages, relevant_chunks)
+
+    session.add_message("assistant", response_text)
+    session.last_response = response_text
+
+    return {
+        "response": response_text,
+        "session_id": session_id,
+        "message_count": len(session.messages)
+    }
 
 
 @app.get("/document/{doc_id}")
@@ -442,6 +651,32 @@ async def delete_document(doc_id: str):
         print(f"Error deleting document: {e}")
         raise HTTPException(status_code=500, detail=f"Error deleting document: {str(e)}")
 
+active_sessions = {}  
+
+class SessionData:
+    def __init__(self, session_id):
+        self.session_id = session_id
+        self.connected_at = datetime.now().isoformat()
+        self.messages = []  # Lista de ChatMessage
+        self.selected_docs = []
+        self.last_prompt = None
+        self.last_response = None
+    
+    def add_message(self, role, content):
+        message = ChatMessage(role=role, content=content)
+        self.messages.append(message)
+        return message
+    
+    def get_conversation_history(self, last_n=None):
+        if last_n is not None and last_n > 0:
+            return self.messages[-last_n:]
+        return self.messages
+    
+    def clear_history(self):
+        self.messages = []
+        self.last_prompt = None
+        self.last_response = None
+
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
@@ -449,10 +684,8 @@ async def websocket_endpoint(websocket: WebSocket):
     
     try:
         session_id = str(uuid.uuid4())
-        active_sessions[session_id] = {
-            "connected_at": datetime.now().isoformat(),
-            "messages": []
-        }
+        session = SessionData(session_id)
+        active_sessions[session_id] = session
         
         await websocket.send_json({
             "type": "connection_established",
@@ -463,19 +696,33 @@ async def websocket_endpoint(websocket: WebSocket):
             data = await websocket.receive_json()
             
             if data.get("type") == "chat_message":
-                messages = active_sessions[session_id]["messages"]
+                user_content = data.get("content", "")
                 
-                user_message = ChatMessage(role="user", content=data.get("content", ""))
-                messages.append(user_message)
+                user_message = session.add_message("user", user_content)
                 
                 doc_ids = data.get("doc_ids", [])
+                if doc_ids:
+                    session.selected_docs = doc_ids
                 
-                relevant_chunks = get_relevant_chunks(user_message.content, doc_ids)
+                if not doc_ids:
+                    try:
+                        documents = await list_documents()
+                        doc_ids = [doc.get("doc_id") for doc in documents 
+                                 if doc.get("status") == "processed"]
+                        print(f"WebSocket: No documents selected. Using all available: {len(doc_ids)}")
+                    except Exception as e:
+                        print(f"Error getting all documents in WebSocket: {e}")
                 
-                response_text = await generate_llm_response([user_message], relevant_chunks)
-
-                assistant_message = ChatMessage(role="assistant", content=response_text)
-                messages.append(assistant_message)
+                relevant_chunks = get_relevant_chunks(user_content, doc_ids)
+                
+                all_messages = session.get_conversation_history()
+                
+                response_text = await generate_llm_response(all_messages, relevant_chunks)
+                
+                assistant_message = session.add_message("assistant", response_text)
+                
+                session.last_prompt = user_content
+                session.last_response = response_text
                 
                 await websocket.send_json({
                     "type": "chat_response",
@@ -491,12 +738,22 @@ async def websocket_endpoint(websocket: WebSocket):
                 
             elif data.get("type") == "select_documents":
                 doc_ids = data.get("doc_ids", [])
-                active_sessions[session_id]["selected_docs"] = doc_ids
+                session.selected_docs = doc_ids
                 
                 await websocket.send_json({
                     "type": "documents_selected",
                     "doc_ids": doc_ids,
                     "message": f"Selected {len(doc_ids)} documents for context"
+                })
+                
+            elif data.get("type") == "new_chat":
+                await cleanup_temp_documents(session_id)
+                
+                session.clear_history()
+                
+                await websocket.send_json({
+                    "type": "chat_reset",
+                    "message": "Chat has been reset and temporary documents cleaned up"
                 })
     
     except Exception as e:
@@ -510,16 +767,81 @@ async def websocket_endpoint(websocket: WebSocket):
             pass
     
     finally:
+        if session_id:
+            await cleanup_temp_documents(session_id)
+            
         if session_id and session_id in active_sessions:
             del active_sessions[session_id]
         try:
             await websocket.close()
         except:
             pass
-
+        
+@app.post("/delete-documents")
+async def delete_multiple_documents(request: List[str]):
+    try:
+        doc_ids = request
+        minio_client = load_models_step.get_minio_client()
+        
+        try:
+            response = minio_client.get_object(load_models_step.MINIO_BUCKET, "metadata/document_list.json")
+            document_list = json.loads(response.read().decode('utf-8'))
+            response.close()
+            response.release_conn()
+        except Exception as e:
+            print(f"Error reading document list: {e}")
+            document_list = []
+        
+        deleted_docs = []
+        failed_docs = []
+        
+        for doc_id in doc_ids:
+            document_exists = any(doc.get("doc_id") == doc_id for doc in document_list)
+            
+            if not document_exists:
+                failed_docs.append({"doc_id": doc_id, "reason": "Document not found"})
+                continue
+                
+            try:
+                objects_to_remove = [
+                    f"documents/{doc_id}.pdf",
+                    f"embeddings/{doc_id}_embeddings.json"
+                ]
+                
+                for obj_name in objects_to_remove:
+                    try:
+                        minio_client.remove_object(load_models_step.MINIO_BUCKET, obj_name)
+                    except Exception as e:
+                        print(f"Could not delete {obj_name}: {e}")
+                
+                deleted_docs.append(doc_id)
+            except Exception as e:
+                failed_docs.append({"doc_id": doc_id, "reason": str(e)})
+        
+        updated_list = [doc for doc in document_list if doc.get("doc_id") not in deleted_docs]
+        document_list_json = json.dumps(updated_list).encode('utf-8')
+        
+        minio_client.put_object(
+            bucket_name=load_models_step.MINIO_BUCKET,
+            object_name="metadata/document_list.json",
+            data=BytesIO(document_list_json),
+            length=len(document_list_json),
+            content_type="application/json"
+        )
+        
+        return {
+            "status": "success",
+            "deleted": deleted_docs,
+            "failed": failed_docs,
+            "timestamp": datetime.now().isoformat()
+        }
+            
+    except Exception as e:
+        print(f"Error deleting documents: {e}")
+        raise HTTPException(status_code=500, detail=f"Error deleting documents: {str(e)}")
+    
 @app.get("/status")
 async def check_status():
-    """Check system status"""
     try:
         ollama_status = "unknown"
         minio_status = "unknown"

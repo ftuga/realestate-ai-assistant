@@ -20,7 +20,7 @@ default_args = {
 }
 
 models_dir = '/opt/airflow/models'
-llm_model_dir = f'{models_dir}/mistral'
+llm_model_dir = f'{models_dir}/llama3:8b'
 version_file = f'{models_dir}/model_versions.json'
 ollama_url = os.environ.get('OLLAMA_API_URL', 'http://ollama:11434')
 embedding_endpoint = f"{ollama_url}/api/embeddings"
@@ -48,7 +48,7 @@ def setup_environment():
     logger.info("Environment setup completed")
 
 def download_llm_model():
-    model_name = "mistral"
+    model_name = "llama3:8b"
     
     try:
         tags_response = requests.get(f"{ollama_url}/api/tags", timeout=10)
@@ -80,7 +80,7 @@ def download_llm_model():
         versions = json.load(f)
 
     versions['llm_model'] = {
-        'name': 'mistral',
+        'name': 'llama3:8b',
         'version': '1.0.0',
         'last_update': datetime.now().isoformat()
     }
