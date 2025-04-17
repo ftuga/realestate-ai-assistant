@@ -76,7 +76,8 @@ million-luxury-assistant/
      - `metadata/`
      - `processed/`
 
-![alt text](/screenshots/image-2.png)
+![alt text](screenshots/image-2.png)
+
 ## Document Processing Workflow with Airflow
 
 ### Key Processing Steps
@@ -102,9 +103,9 @@ million-luxury-assistant/
    - Model for generating embeddings  (nomic-embed-text)
    - Base model for the chat (mistral)
 
-![alt text](/screenshots/image-3.png)
-![alt text](/screenshots/image-4.png)
-![alt text](/screenshots/image-5.png)
+![alt text](screenshots/image-3.png)
+![alt text](screenshots/image-4.png)
+![alt text](screenshots/image-5.png)
 
 ## LLM Chat Interface
 
@@ -139,7 +140,7 @@ The chat interface provides an advanced conversational experience for interactin
    - Supports multiple document types (primarily PDFs)
    - Real-time interaction with document knowledge base
 
-![alt text](image.png)
+![alt text](screenshots/image-6.png)
 
 ## Technologies and Dependencies
 
