@@ -9301,3 +9301,192 @@ File Path                            PID    Runtime      # DAGs    # Errors  Las
 /opt/airflow/dags/Text_processor.py                           1           0  0.49s           2025-04-17T21:50:14
 ================================================================================
 [2025-04-17T21:50:24.457+0000] {manager.py:470} INFO - Exiting gracefully upon receiving signal 15
+[2025-04-17T22:18:36.755+0000] {manager.py:487} INFO - Processing files using up to 2 processes at a time 
+[2025-04-17T22:18:36.755+0000] {manager.py:488} INFO - Process each file at most once every 30 seconds
+[2025-04-17T22:18:36.756+0000] {manager.py:489} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2025-04-17T22:18:36.756+0000] {manager.py:758} INFO - Searching for files in /opt/airflow/dags
+[2025-04-17T22:18:36.759+0000] {manager.py:761} INFO - There are 2 files in /opt/airflow/dags
+[2025-04-17T22:18:36.869+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/Download_model.py     31  0.07s             0           0
+/opt/airflow/dags/Text_processor.py     32  0.02s             0           0
+================================================================================
+[2025-04-17T22:19:10.683+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                            PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Download_model.py                           1           0  0.06s           2025-04-17T22:19:07
+/opt/airflow/dags/Text_processor.py                           1           0  0.52s           2025-04-17T22:19:09
+================================================================================
+[2025-04-17T22:19:44.419+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                            PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Download_model.py                           1           0  0.06s           2025-04-17T22:19:37
+/opt/airflow/dags/Text_processor.py                           1           0  0.47s           2025-04-17T22:19:40
+================================================================================
+[2025-04-17T22:20:18.552+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                            PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Download_model.py                           1           0  0.06s           2025-04-17T22:20:07
+/opt/airflow/dags/Text_processor.py                           1           0  0.47s           2025-04-17T22:20:11
+================================================================================
+[2025-04-17T22:20:52.191+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                            PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Download_model.py                           1           0  0.06s           2025-04-17T22:20:37
+/opt/airflow/dags/Text_processor.py                           1           0  0.56s           2025-04-17T22:20:43
+================================================================================
+[2025-04-17T22:21:25.987+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                            PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Download_model.py                           1           0  0.13s           2025-04-17T22:21:07
+/opt/airflow/dags/Text_processor.py                           1           0  0.52s           2025-04-17T22:21:14
+================================================================================
+[2025-04-17T22:21:59.709+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                            PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Download_model.py                           1           0  0.06s           2025-04-17T22:21:38
+/opt/airflow/dags/Text_processor.py                           1           0  0.63s           2025-04-17T22:21:45
+================================================================================
+[2025-04-17T22:22:33.747+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                            PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Download_model.py                           1           0  0.14s           2025-04-17T22:22:08
+/opt/airflow/dags/Text_processor.py                           1           0  4.32s           2025-04-17T22:22:19
+================================================================================
+[2025-04-17T22:23:07.475+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                            PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Download_model.py                           1           0  0.07s           2025-04-17T22:22:38
+/opt/airflow/dags/Text_processor.py                           1           0  0.68s           2025-04-17T22:22:50
+================================================================================
+[2025-04-17T22:23:36.826+0000] {manager.py:758} INFO - Searching for files in /opt/airflow/dags
+[2025-04-17T22:23:36.828+0000] {manager.py:761} INFO - There are 2 files in /opt/airflow/dags
+[2025-04-17T22:23:41.445+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                            PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Download_model.py                           1           0  0.05s           2025-04-17T22:23:39
+/opt/airflow/dags/Text_processor.py                           1           0  0.65s           2025-04-17T22:23:21
+================================================================================
+[2025-04-17T22:24:15.618+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                            PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Download_model.py                           1           0  0.06s           2025-04-17T22:24:09
+/opt/airflow/dags/Text_processor.py                           1           0  0.47s           2025-04-17T22:23:52
+================================================================================
+[2025-04-17T22:24:49.852+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                            PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Download_model.py                           1           0  0.06s           2025-04-17T22:24:42
+/opt/airflow/dags/Text_processor.py                           1           0  0.54s           2025-04-17T22:24:24
+================================================================================
+[2025-04-17T22:25:23.617+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                            PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Download_model.py                           1           0  0.05s           2025-04-17T22:25:13
+/opt/airflow/dags/Text_processor.py                           1           0  0.47s           2025-04-17T22:24:55
+================================================================================
+[2025-04-17T22:25:57.300+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                            PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Download_model.py                           1           0  0.05s           2025-04-17T22:25:43
+/opt/airflow/dags/Text_processor.py                           1           0  0.49s           2025-04-17T22:25:57
+================================================================================
+[2025-04-17T22:26:30.988+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Download_model.py                           1           0  0.05s           2025-04-17T22:26:13
+/opt/airflow/dags/Text_processor.py    464  0.00s             1           0  0.49s           2025-04-17T22:25:57
+================================================================================
+[2025-04-17T22:27:01.562+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                              PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Download_model.py                           1           0  0.06s           2025-04-17T22:26:43
+/opt/airflow/dags/Text_processor.py    493  0.00s             1           0  0.45s           2025-04-17T22:26:31
+================================================================================
+[2025-04-17T22:27:35.217+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                            PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Download_model.py                           1           0  0.06s           2025-04-17T22:27:13
+/opt/airflow/dags/Text_processor.py                           1           0  0.47s           2025-04-17T22:27:33
+================================================================================
+[2025-04-17T22:28:08.950+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                            PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Download_model.py                           1           0  0.05s           2025-04-17T22:27:43
+/opt/airflow/dags/Text_processor.py                           1           0  0.49s           2025-04-17T22:28:04
+================================================================================
+[2025-04-17T22:28:37.086+0000] {manager.py:758} INFO - Searching for files in /opt/airflow/dags
+[2025-04-17T22:28:37.088+0000] {manager.py:761} INFO - There are 2 files in /opt/airflow/dags
+[2025-04-17T22:28:42.682+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                            PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Download_model.py                           1           0  0.05s           2025-04-17T22:28:14
+/opt/airflow/dags/Text_processor.py                           1           0  0.47s           2025-04-17T22:28:35
+================================================================================
+[2025-04-17T22:29:16.302+0000] {manager.py:889} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                            PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-----------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/Download_model.py                           1           0  0.06s           2025-04-17T22:29:14
+/opt/airflow/dags/Text_processor.py                           1           0  0.50s           2025-04-17T22:29:06
+================================================================================
