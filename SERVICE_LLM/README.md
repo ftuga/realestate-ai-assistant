@@ -101,7 +101,7 @@ million-luxury-assistant/
 
 5. **Download LLM**
    - Model for generating embeddings  (nomic-embed-text)
-   - Base model for the chat (mistral)
+   - Base model for the chat (llama3:8b)
 
 ![alt text](screenshots/image-3.png)
 ![alt text](screenshots/image-4.png)
@@ -232,3 +232,14 @@ TORCH_DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 ## Default Credentials
 - **Airflow**: airflow/airflow
 - **MinIO**: minioadmin/minioadmin
+
+## Developer Note
+
+Despite the limited time available due to my current schedule, I have thoroughly enjoyed working on this technical challenge. I will continue to make ongoing improvements as part of my learning process, as I found it to be a highly engaging and rewarding experience. As such, this repository will continue to be updated regularly.
+
+The only remaining tasks at this point include:
+- Implementing a cache mechanism to store chat history.
+- Expanding support for multiple tools within the chat.
+- Enhancing the embedding process during PDF loading.
+
+Although these additions were not part of the initial problem statement, they follow good development practices and are intended to further improve the user experience.
