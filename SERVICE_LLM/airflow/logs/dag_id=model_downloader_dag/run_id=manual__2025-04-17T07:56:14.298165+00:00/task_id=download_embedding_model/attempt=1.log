@@ -1,0 +1,15 @@
+[2025-04-17T07:56:15.136+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_downloader_dag.download_embedding_model manual__2025-04-17T07:56:14.298165+00:00 [queued]>
+[2025-04-17T07:56:15.141+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_downloader_dag.download_embedding_model manual__2025-04-17T07:56:14.298165+00:00 [queued]>
+[2025-04-17T07:56:15.142+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 3
+[2025-04-17T07:56:15.147+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): download_embedding_model> on 2025-04-17 07:56:14.298165+00:00
+[2025-04-17T07:56:15.150+0000] {standard_task_runner.py:57} INFO - Started process 434 to run task
+[2025-04-17T07:56:15.152+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_downloader_dag', 'download_embedding_model', 'manual__2025-04-17T07:56:14.298165+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/Download_model.py', '--cfg-path', '/tmp/tmp3xk09lo5']
+[2025-04-17T07:56:15.152+0000] {standard_task_runner.py:85} INFO - Job 7: Subtask download_embedding_model
+[2025-04-17T07:56:15.177+0000] {task_command.py:410} INFO - Running <TaskInstance: model_downloader_dag.download_embedding_model manual__2025-04-17T07:56:14.298165+00:00 [running]> on host 71a1facc716b
+[2025-04-17T07:56:15.217+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_downloader_dag' AIRFLOW_CTX_TASK_ID='download_embedding_model' AIRFLOW_CTX_EXECUTION_DATE='2025-04-17T07:56:14.298165+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-04-17T07:56:14.298165+00:00'
+[2025-04-17T07:56:15.217+0000] {Download_model.py:94} INFO - Checking availability of embedding model: nomic-embed-text
+[2025-04-17T07:56:16.827+0000] {Download_model.py:104} INFO - Embedding model nomic-embed-text is already available
+[2025-04-17T07:56:16.828+0000] {python.py:183} INFO - Done. Returned value was: None
+[2025-04-17T07:56:16.837+0000] {taskinstance.py:1368} INFO - Marking task as SUCCESS. dag_id=model_downloader_dag, task_id=download_embedding_model, execution_date=20250417T075614, start_date=20250417T075615, end_date=20250417T075616
+[2025-04-17T07:56:16.887+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-04-17T07:56:16.901+0000] {taskinstance.py:2674} INFO - 0 downstream tasks scheduled from follow-on schedule check

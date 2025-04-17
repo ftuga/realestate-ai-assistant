@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+minio
+requests
+jinja2
+numpy
+fastapi-utils
+typing-inspect
+pandas
+nltk
+python-multipart
+torch

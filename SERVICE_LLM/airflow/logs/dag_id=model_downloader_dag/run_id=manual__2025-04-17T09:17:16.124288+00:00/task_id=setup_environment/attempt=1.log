@@ -1,0 +1,14 @@
+[2025-04-17T09:17:20.396+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: model_downloader_dag.setup_environment manual__2025-04-17T09:17:16.124288+00:00 [queued]>
+[2025-04-17T09:17:20.402+0000] {taskinstance.py:1125} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: model_downloader_dag.setup_environment manual__2025-04-17T09:17:16.124288+00:00 [queued]>
+[2025-04-17T09:17:20.403+0000] {taskinstance.py:1331} INFO - Starting attempt 1 of 3
+[2025-04-17T09:17:20.409+0000] {taskinstance.py:1350} INFO - Executing <Task(PythonOperator): setup_environment> on 2025-04-17 09:17:16.124288+00:00
+[2025-04-17T09:17:20.412+0000] {standard_task_runner.py:57} INFO - Started process 104 to run task
+[2025-04-17T09:17:20.415+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'model_downloader_dag', 'setup_environment', 'manual__2025-04-17T09:17:16.124288+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/Download_model.py', '--cfg-path', '/tmp/tmpx0ucpegl']
+[2025-04-17T09:17:20.415+0000] {standard_task_runner.py:85} INFO - Job 3: Subtask setup_environment
+[2025-04-17T09:17:20.452+0000] {task_command.py:410} INFO - Running <TaskInstance: model_downloader_dag.setup_environment manual__2025-04-17T09:17:16.124288+00:00 [running]> on host 74956c385c90
+[2025-04-17T09:17:20.507+0000] {taskinstance.py:1568} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='model_downloader_dag' AIRFLOW_CTX_TASK_ID='setup_environment' AIRFLOW_CTX_EXECUTION_DATE='2025-04-17T09:17:16.124288+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-04-17T09:17:16.124288+00:00'
+[2025-04-17T09:17:20.508+0000] {Download_model.py:48} INFO - Environment setup completed
+[2025-04-17T09:17:20.508+0000] {python.py:183} INFO - Done. Returned value was: None
+[2025-04-17T09:17:20.518+0000] {taskinstance.py:1368} INFO - Marking task as SUCCESS. dag_id=model_downloader_dag, task_id=setup_environment, execution_date=20250417T091716, start_date=20250417T091720, end_date=20250417T091720
+[2025-04-17T09:17:20.546+0000] {local_task_job_runner.py:232} INFO - Task exited with return code 0
+[2025-04-17T09:17:20.561+0000] {taskinstance.py:2674} INFO - 2 downstream tasks scheduled from follow-on schedule check
