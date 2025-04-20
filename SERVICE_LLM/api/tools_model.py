@@ -8,6 +8,9 @@ import nltk
 from nltk.tokenize import sent_tokenize
 import logging
 import unicodedata
+import requests
+from datetime import datetime
+from io import BytesIO
 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -21,13 +24,13 @@ except LookupError:
 class RealEstatePDFProcessor:
     
     PATTERNS = {
-        'price': r'(?:price|cost|value)(?:\s*(?:is|of|:))?\s*[$€£]?\s*([0-9,]+(?:\.[0-9]{2})?)',
-        'area': r'(?:area|size|surface)(?:\s*(?:is|of|:))?\s*([0-9,]+(?:\.[0-9]{2})?)(?:\s*(?:sq\.?|square)\s*(?:ft|feet|m|meters|metres))',
-        'rooms': r'(?:([0-9]+)(?:\s*(?:bed|bedroom|room)s?))',
-        'bathrooms': r'(?:([0-9]+)(?:\s*(?:bath|bathroom)s?))',
-        'address': r'(?:address|location|situated at|located at)(?:\s*(?:is|:))?\s*([^\n,\.]{5,100})',
-        'year_built': r'(?:built|constructed|year)(?:\s*(?:in|:))?\s*([0-9]{4})',
-    }
+            'name': r'^([A-Z][A-Z\s]+)(?:\n|$)',  
+            'price_range': r'PRICE RANGE\s*\n\s*([^\n]+)',
+            'amenities': r'AMENITIES\s*\n([\s\S]*?)(?:\n\s*[A-Z ]+\s*\n|\Z)',
+            'building_info': r'THE BUILDING\s*\n([\s\S]*?)(?:\n\s*[A-Z ]+\s*\n|\Z)',
+            'developer': r'DEVELOPER\s*\n([^\n]+)',
+            'completion': r'COMPLETION DATE\s*\n([^\n]+)'
+        }
     
     def __init__(self, min_chunk_size: int = 200, max_chunk_size: int = 1000):
         self.min_chunk_size = min_chunk_size
@@ -69,21 +72,107 @@ class RealEstatePDFProcessor:
         
         chunks = []
         current_chunk = ""
+        overlap_size = min(200, self.max_chunk_size // 4)
         
         for sentence in sentences:
             if not sentence.strip():
                 continue
                 
             if len(current_chunk) + len(sentence) > self.max_chunk_size and len(current_chunk) >= self.min_chunk_size:
-                chunks.append(current_chunk)
-                current_chunk = sentence
+                chunks.append(current_chunk.strip())
+                
+                words = current_chunk.split()
+                if len(words) > overlap_size // 10:
+                    overlap_text = " ".join(words[-overlap_size // 10:])
+                    current_chunk = overlap_text + " " + sentence
+                else:
+                    current_chunk = sentence
             else:
                 current_chunk += " " + sentence if current_chunk else sentence
         
-        if current_chunk:
-            chunks.append(current_chunk)
+        if current_chunk and len(current_chunk) >= self.min_chunk_size:
+            chunks.append(current_chunk.strip())
+        elif current_chunk:
+            if chunks:
+                chunks[-1] = chunks[-1] + " " + current_chunk
+            else:
+                chunks.append(current_chunk.strip())
+                
+        final_chunks = []
+        for chunk in chunks:
+            if len(chunk) > self.max_chunk_size * 1.5:
+                sub_chunks = self._split_large_chunk(chunk)
+                final_chunks.extend(sub_chunks)
+            else:
+                final_chunks.append(chunk)
+                
+        logger.info(f"Created {len(final_chunks)} chunks from text of length {len(text)}")
+        return final_chunks
+    
+    def improved_chunk_text(self, text: str) -> List[str]:
+        """Chunk text with improved logic from DAG"""
+        try:
+            import nltk
+            from nltk.tokenize import sent_tokenize
+            try:
+                nltk.data.find('tokenizers/punkt')
+            except LookupError:
+                nltk.download('punkt', quiet=True)
             
+            min_chunk_size = self.min_chunk_size
+            max_chunk_size = self.max_chunk_size
+            overlap_size = min(200, self.max_chunk_size // 4)
+            
+            sentences = sent_tokenize(text)
+            chunks = []
+            current_chunk = ""
+            
+            for sentence in sentences:
+                if not sentence.strip():
+                    continue
+                    
+                if len(current_chunk) + len(sentence) > max_chunk_size and len(current_chunk) >= min_chunk_size:
+                    chunks.append(current_chunk.strip())
+                    
+                    words = current_chunk.split()
+                    if len(words) > overlap_size // 10:
+                        overlap_text = " ".join(words[-overlap_size // 10:])
+                        current_chunk = overlap_text + " " + sentence
+                    else:
+                        current_chunk = sentence
+                else:
+                    current_chunk += " " + sentence if current_chunk else sentence
+            
+            if current_chunk and len(current_chunk) >= min_chunk_size:
+                chunks.append(current_chunk.strip())
+            elif current_chunk:
+                if chunks:
+                    chunks[-1] = chunks[-1] + " " + current_chunk
+                else:
+                    chunks.append(current_chunk.strip())
+            
+        except Exception as e:
+            logger.error(f"Error in sentence tokenization, using basic chunking: {e}")
+            chunks = self.chunk_text(text)
+        
         return chunks
+
+    def _split_large_chunk(self, chunk: str) -> List[str]:
+        sentences = sent_tokenize(chunk)
+        sub_chunks = []
+        current_sub_chunk = ""
+        
+        for sentence in sentences:
+            if len(current_sub_chunk) + len(sentence) > self.max_chunk_size and current_sub_chunk:
+                sub_chunks.append(current_sub_chunk.strip())
+                current_sub_chunk = sentence
+            else:
+                current_sub_chunk += " " + sentence if current_sub_chunk else sentence
+        
+        if current_sub_chunk:
+            sub_chunks.append(current_sub_chunk.strip())
+            
+        return sub_chunks
     
     def extract_metadata(self, text: str) -> Dict[str, Any]:
         metadata = {}
@@ -103,27 +192,53 @@ class RealEstatePDFProcessor:
         
         return metadata
     
+    def _estimate_page_number(self, text_position, full_text, total_pages):
+        """Estimate page number based on text position in the document"""
+        if text_position < 0 or total_pages <= 1:
+            return 1
+        
+        relative_position = text_position / len(full_text)
+        estimated_page = max(1, min(total_pages, round(relative_position * total_pages)))
+        return estimated_page
+    
     def process_pdf(self, pdf_path: str, doc_id: str) -> Dict[str, Any]:
         logger.info(f"Processing PDF: {pdf_path}")
         
-        # Extract raw text
         raw_text = self.extract_text_from_pdf(pdf_path)
         
-        # Clean text (similar to the DAG process)
         cleaned_text = self.clean_text(raw_text)
         logger.info(f"Cleaned text: reduced from {len(raw_text)} to {len(cleaned_text)} characters")
         
-        # Create chunks from cleaned text
-        chunks = self.chunk_text(cleaned_text)
+        chunks = self.improved_chunk_text(cleaned_text)
         logger.info(f"Created {len(chunks)} text chunks")
         
-        # Extract metadata from original text for better pattern matching
         metadata = self.extract_metadata(raw_text)
         logger.info(f"Extracted metadata: {list(metadata.keys())}")
         
         processed_chunks = []
         for i, chunk_text in enumerate(chunks):
-            # Extract metadata for each chunk from original text segments
+            try:
+                import requests
+                ollama_url = os.environ.get('OLLAMA_API_URL', 'http://ollama:11434')
+                embedding_endpoint = f"{ollama_url}/api/embeddings"
+                
+                response = requests.post(
+                    embedding_endpoint,
+                    json={
+                        "model": "nomic-embed-text",
+                        "prompt": chunk_text
+                    }
+                )
+                
+                if response.status_code == 200:
+                    chunk_embedding = response.json().get('embedding', [])
+                else:
+                    logger.error(f"Error getting embedding for chunk {i}, using empty embedding")
+                    chunk_embedding = []
+            except Exception as e:
+                logger.error(f"Exception getting chunk embedding: {e}")
+                chunk_embedding = []
+            
             raw_chunk_idx = raw_text.find(chunk_text)
             raw_chunk_text = raw_text[raw_chunk_idx:raw_chunk_idx + len(chunk_text) + 100] if raw_chunk_idx >= 0 else chunk_text
             chunk_metadata = self.extract_metadata(raw_chunk_text)
@@ -131,13 +246,21 @@ class RealEstatePDFProcessor:
             chunk_data = {
                 "chunk_id": f"{doc_id}_chunk_{i}",
                 "text": chunk_text,
-                "metadata": chunk_metadata
+                "embedding": chunk_embedding,
+                "metadata": {
+                    **chunk_metadata,
+                    "page_num": self._estimate_page_number(raw_chunk_idx, raw_text, self._get_page_count(pdf_path))
+                }
             }
             processed_chunks.append(chunk_data)
         
         result = {
             "doc_id": doc_id,
-            "metadata": metadata,
+            "metadata": {
+                **metadata,
+                "original_filename": os.path.basename(pdf_path),
+                "processed_date": datetime.now().isoformat()
+            },
             "page_count": self._get_page_count(pdf_path),
             "chunks": processed_chunks,
             "full_text_length": len(raw_text),

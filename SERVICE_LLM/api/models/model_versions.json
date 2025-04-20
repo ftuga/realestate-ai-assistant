@@ -2,11 +2,11 @@
   "llm_model": {
     "name": "llama3:8b",
     "version": "1.0.0",
-    "last_update": "2025-04-18T16:29:07.378472"
+    "last_update": "2025-04-20T00:31:04.999276"
   },
   "embedding_model": {
     "name": "nomic-embed-text",
     "version": "1.0.0",
-    "last_update": "2025-04-18T16:29:40.382673"
+    "last_update": "2025-04-20T08:06:22.626997"
   }
 }

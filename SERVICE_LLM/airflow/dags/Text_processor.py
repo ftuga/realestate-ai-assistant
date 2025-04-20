@@ -509,16 +509,111 @@ def save_to_minio(ti):
             for doc in docs_with_embeddings:
                 try:
                     doc_id = str(doc['id'])
+                    
+                    from nltk.tokenize import sent_tokenize
+                    try:
+                        import nltk
+                        nltk.download('punkt', quiet=True)
+                    except:
+                        print("Could not download NLTK punkt - using basic chunking")
+                    
+                    min_chunk_size = 100
+                    max_chunk_size = 800
+                    overlap_size = 100
+                    
+                    clean_content = doc['clean_content']
                     chunks = []
                     
-                    chunks.append({
-                        "chunk_id": 0,
-                        "text": doc['clean_content'],
-                        "embedding": doc['embedding']
-                    })
+                    try:
+                        sentences = sent_tokenize(clean_content)
+                        current_chunk = ""
+                        
+                        for i, sentence in enumerate(sentences):
+                            if not sentence.strip():
+                                continue
+                                
+                            if len(current_chunk) + len(sentence) > max_chunk_size and len(current_chunk) >= min_chunk_size:
+                                chunks.append(current_chunk.strip())
+                                
+                                words = current_chunk.split()
+                                if len(words) > overlap_size // 10:
+                                    overlap_text = " ".join(words[-overlap_size // 10:])
+                                    current_chunk = overlap_text + " " + sentence
+                                else:
+                                    current_chunk = sentence
+                            else:
+                                current_chunk += " " + sentence if current_chunk else sentence
+                        
+                        if current_chunk:
+                            chunks.append(current_chunk.strip())
+                    except Exception as e:
+                        print(f"Error in sentence tokenization, using basic chunking: {e}")
+                        total_length = len(clean_content)
+                        start = 0
+                        
+                        while start < total_length:
+                            end = min(start + max_chunk_size, total_length)
+                            
+                            if end < total_length:
+                                for i in range(min(100, end - start)):
+                                    if clean_content[end - i] in ['.', '\n', '!', '?']:
+                                        end = end - i + 1
+                                        break
+                            
+                            chunks.append(clean_content[start:end].strip())
+                            start = max(end - overlap_size, start + 1)  
+                            
+                    if not chunks:
+                        chunks = [clean_content]
                     
-                    chunks_json = json.dumps(chunks).encode('utf-8')
+                    print(f"Created {len(chunks)} chunks for document {doc_id}")
+                    
+                    chunks_with_embeddings = []
+                    
+                    main_embedding = doc.get('embedding', [])
+                    
+                    for i, chunk_text in enumerate(chunks):
+                        try:
+                            import requests
+                            ollama_url = os.environ.get('OLLAMA_API_URL', 'http://ollama:11434')
+                            embedding_endpoint = f"{ollama_url}/api/embeddings"
+                            
+                            response = requests.post(
+                                embedding_endpoint,
+                                json={
+                                    "model": "nomic-embed-text",
+                                    "prompt": chunk_text
+                                }
+                            )
+                            
+                            if response.status_code == 200:
+                                chunk_embedding = response.json().get('embedding', main_embedding)
+                            else:
+                                print(f"Error getting embedding for chunk {i}, using document embedding")
+                                chunk_embedding = main_embedding
+                        except Exception as e:
+                            print(f"Exception getting chunk embedding: {e}")
+                            chunk_embedding = main_embedding
+                            
+                        chunks_with_embeddings.append({
+                            "chunk_id": f"{i}",
+                            "text": chunk_text,
+                            "embedding": chunk_embedding
+                        })
+                    
+                    chunks_data = {
+                        "metadata": {
+                            "title": doc.get('title', ''),
+                            "filename": os.path.basename(doc.get('file_path', '')),
+                            "page_count": doc.get('page_count', 1),
+                            "date": str(doc.get('created_at', '')),
+                        },
+                        "chunks": chunks_with_embeddings
+                    }
+                    
+                    chunks_json = json.dumps(chunks_data).encode('utf-8')
                     embeddings_path = f"embeddings/{doc_id}_embeddings.json"
+                    
                     try:
                         minio_client.remove_object(minio_bucket, embeddings_path)
                         print(f"Eliminado embedding anterior para documento {doc_id}")
@@ -558,14 +653,16 @@ def save_to_minio(ti):
                         "doc_id": doc_id,
                         "filename": original_filename,
                         "page_count": doc.get('page_count', 1),
-                        "processed_date": datetime.now().isoformat()
+                        "processed_date": datetime.now().isoformat(),
+                        "chunk_count": len(chunks),
+                        "status": "processed"
                     }
                     
-                    existing_docs = [d for d in existing_docs if d.get('filename') != original_filename]
+                    existing_docs = [d for d in existing_docs if d.get('doc_id') != doc_id]
                     
                     existing_docs.append(doc_metadata)
                     
-                    print(f"Documento {doc_id} ({original_filename}) actualizado en MinIO")
+                    print(f"Documento {doc_id} ({original_filename}) actualizado en MinIO con {len(chunks)} chunks")
                     
                 except Exception as e:
                     print(f"Error al guardar documento {doc['id']} en MinIO: {e}")
@@ -629,7 +726,7 @@ def save_to_minio(ti):
     except Exception as e:
         print(f"Error al guardar en MinIO: {e}")
         raise
-
+    
 def update_document_status(doc_ids):
     if not doc_ids:
         print("No hay IDs de documentos para actualizar")
