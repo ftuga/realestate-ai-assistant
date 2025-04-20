@@ -36,7 +36,7 @@ app.add_middleware(
 )
 
 active_sessions = {}
-TEMP_DOCUMENTS = {}  # Formato: {session_id: [doc_id1, doc_id2, ...]}
+TEMP_DOCUMENTS = {} 
 DATA_DIR = os.environ.get("DATA_DIR", "/opt/airflow/data")
 EMBEDDINGS_DIR = os.environ.get("EMBEDDINGS_DIR", "/opt/airflow/embeddings")
 UPLOAD_DIR = os.path.join(DATA_DIR, "uploads")
@@ -309,6 +309,16 @@ async def upload_document(file: UploadFile = File(...), session_id: str = Form(N
                 print(f"Processing uploaded document {document_id}...")
                 result = processor.process_pdf(temp_file_path, document_id)
                 
+                cleaned_text = processor.clean_text(result.get("full_text", ""))
+                processed_text = cleaned_text.encode('utf-8')
+                minio_client.put_object(
+                    bucket_name=load_models_step.MINIO_BUCKET,
+                    object_name=f"processed/{document_id}_processed.txt",
+                    data=BytesIO(processed_text),
+                    length=len(processed_text),
+                    content_type="text/plain"
+                )
+                
                 result_json = json.dumps(result).encode('utf-8')
                 minio_client.put_object(
                     bucket_name=load_models_step.MINIO_BUCKET,
@@ -378,7 +388,7 @@ async def upload_document(file: UploadFile = File(...), session_id: str = Form(N
             status_code=500, 
             detail=f"Error uploading document: {str(e)}"
         )
-
+        
 @app.post("/process-document")
 async def process_document(request: ProcessDocumentRequest):
     doc_id = request.doc_id
@@ -404,6 +414,16 @@ async def process_document(request: ProcessDocumentRequest):
         processor = RealEstatePDFProcessor()
         try:
             result = processor.process_pdf(temp_file_path, doc_id)
+            
+            cleaned_text = processor.clean_text(processor.extract_text_from_pdf(temp_file_path))
+            processed_text = cleaned_text.encode('utf-8')
+            minio_client.put_object(
+                bucket_name=load_models_step.MINIO_BUCKET,
+                object_name=f"processed/{doc_id}_processed.txt",
+                data=BytesIO(processed_text),
+                length=len(processed_text),
+                content_type="text/plain"
+            )
             
             result_json = json.dumps(result).encode('utf-8')
             minio_client.put_object(
@@ -459,7 +479,7 @@ async def process_document(request: ProcessDocumentRequest):
     except Exception as e:
         print(f"Error in document processing: {e}")
         raise HTTPException(status_code=500, detail=f"Error in document processing: {str(e)}")
-
+    
 @app.post("/chat")
 async def chat(request: ChatRequest):
     messages = request.messages
@@ -657,7 +677,7 @@ class SessionData:
     def __init__(self, session_id):
         self.session_id = session_id
         self.connected_at = datetime.now().isoformat()
-        self.messages = []  # Lista de ChatMessage
+        self.messages = []  
         self.selected_docs = []
         self.last_prompt = None
         self.last_response = None
